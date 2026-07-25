@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button, IconButton, Badge, Input, Textarea, Select } from "@/components/primitives"
+import { Button, IconButton, Badge, Input, Textarea, Select, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, TrendIndicator, FinancialMetric, MetricCard } from "@/components/primitives"
 
 interface Swatch {
   token: string
@@ -655,6 +655,356 @@ export default function DesignSystemPage() {
             </div>
           </section>
         ))} 
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Cards
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Variants</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card variant="default" padding="md">
+                  <CardHeader>
+                    <CardTitle>Revenue Analysis</CardTitle>
+                    <CardDescription>FY 2026 financial overview</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p className="text-caption text-text-muted">Updated recently</p>
+                  </CardFooter>
+                </Card>
+                <Card variant="elevated" padding="md">
+                  <CardHeader>
+                    <CardTitle>Revenue Analysis</CardTitle>
+                    <CardDescription>FY 2026 financial overview</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p className="text-caption text-text-muted">Updated recently</p>
+                  </CardFooter>
+                </Card>
+                <Card variant="outlined" padding="md">
+                  <CardHeader>
+                    <CardTitle>Revenue Analysis</CardTitle>
+                    <CardDescription>FY 2026 financial overview</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p className="text-caption text-text-muted">Updated recently</p>
+                  </CardFooter>
+                </Card>
+                <Card variant="interactive" padding="md" tabIndex={0} role="button" aria-label="View revenue analysis">
+                  <CardHeader>
+                    <CardTitle>Revenue Analysis</CardTitle>
+                    <CardDescription>FY 2026 financial overview</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p className="text-caption text-text-muted">Updated recently</p>
+                  </CardFooter>
+                </Card>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold textText-secondary mb-4 uppercase tracking-wider">Padding</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card variant="default" padding="none">
+                  <CardHeader>
+                    <CardTitle>No Padding</CardTitle>
+                    <CardDescription>Content flush to edges</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                </Card>
+                <Card variant="default" padding="sm">
+                  <CardHeader>
+                    <CardTitle>Small Padding</CardTitle>
+                    <CardDescription>Compact spacing</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                </Card>
+                <Card variant="default" padding="md">
+                  <CardHeader>
+                    <CardTitle>Medium Padding</CardTitle>
+                    <CardDescription>Default spacing</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                </Card>
+                <Card variant="default" padding="lg">
+                  <CardHeader>
+                    <CardTitle>Large Padding</CardTitle>
+                    <CardDescription>Generous spacing</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Revenue ₹1.24T</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Accessibility & Responsive QA</h3>
+              <p className="text-xs text-text-muted mb-4">Normal cards are presentational divs. Interactive cards support keyboard focus via Tab and visible focus-visible outline. Resize viewport to verify at 375px mobile, 768px tablet, and desktop. No fixed widths.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card variant="default" padding="md">
+                  <CardHeader>
+                    <CardTitle>Light Theme</CardTitle>
+                    <CardDescription>Default light rendering</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Use theme switcher to confirm both themes.</p>
+                  </CardContent>
+                </Card>
+                <Card variant="default" padding="md" className="bg-surface-card dark:bg-surface-card">
+                  <CardHeader>
+                    <CardTitle>Dark Theme</CardTitle>
+                    <CardDescription>Dark mode rendering</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-body text-text-primary">Cards inherit theme tokens automatically.</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Trend Indicator
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Semantic Status</h3>
+              <p className="text-xs text-text-muted mb-4">Status is caller-controlled, not inferred from numeric sign.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <TrendIndicator value="+12.4%" status="positive" />
+                <TrendIndicator value="-3.2%" status="negative" />
+                <TrendIndicator value="0.0%" status="neutral" />
+                <TrendIndicator value="+240 bps" status="positive" />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Caller-Controlled Semantics</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-xs text-text-muted mb-2">Revenue Growth +8.5% → status=positive</p>
+                  <TrendIndicator value="+8.5%" status="positive" accessibleLabel="Revenue growth positive" />
+                </div>
+                <div>
+                  <p className="text-xs text-text-muted mb-2">Expense Growth +8.5% → status=negative</p>
+                  <TrendIndicator value="+8.5%" status="negative" accessibleLabel="Expense growth negative" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Financial Metric
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Examples</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FinancialMetric
+                  label="Revenue"
+                  value="₹1.24T"
+                  change="+12.4%"
+                  trendStatus="positive"
+                  comparisonText="vs FY 2025"
+                />
+                <FinancialMetric
+                  label="Operating Margin"
+                  value="18.75%"
+                  change="+240 bps"
+                  trendStatus="positive"
+                  comparisonText="YoY"
+                  helperText="Year over year improvement"
+                />
+                <FinancialMetric
+                  label="Net Income"
+                  value="₹24,382.57 Cr"
+                  change="+8.3%"
+                  trendStatus="positive"
+                  comparisonText="YoY"
+                />
+                <FinancialMetric
+                  label="Free Cash Flow"
+                  value="₹8,420 Cr"
+                  change="-3.2%"
+                  trendStatus="negative"
+                  comparisonText="vs FY 2025"
+                />
+                <FinancialMetric
+                  label="Expense Growth"
+                  value="+8.5%"
+                  change="+8.5%"
+                  trendStatus="negative"
+                  statusContext="Negative semantic status despite positive numeric sign"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Metric Cards
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Examples</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <MetricCard
+                  label="Revenue"
+                  primaryValue="₹1.24T"
+                  trend="+12.4%"
+                  trendStatus="positive"
+                  comparisonPeriod="vs FY 2025"
+                />
+                <MetricCard
+                  label="Net Income"
+                  primaryValue="₹24,382.57 Cr"
+                  trend="+8.3%"
+                  trendStatus="positive"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Operating Margin"
+                  primaryValue="18.75%"
+                  trend="+240 bps"
+                  trendStatus="positive"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Operating Expenses"
+                  primaryValue="₹42,680 Cr"
+                  trend="+8.5%"
+                  trendStatus="negative"
+                  comparisonPeriod="vs FY 2025"
+                />
+                <MetricCard
+                  label="Free Cash Flow"
+                  primaryValue="₹8,420 Cr"
+                  trend="-3.2%"
+                  trendStatus="negative"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Debt-to-Equity"
+                  primaryValue="0.42x"
+                  trend="0.0%"
+                  trendStatus="neutral"
+                  comparisonPeriod="Current Period"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Semantic Status</h3>
+              <p className="text-xs text-text-muted mb-4">MetricCard does not infer financial meaning from numeric sign. Caller explicitly provides status.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <MetricCard
+                  label="Revenue Growth"
+                  primaryValue="+8.5%"
+                  trend="+8.5%"
+                  trendStatus="positive"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Expense Growth"
+                  primaryValue="+8.5%"
+                  trend="+8.5%"
+                  trendStatus="negative"
+                  comparisonPeriod="YoY"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Loading State</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <MetricCard label="Revenue" primaryValue="₹1.24T" loading />
+                <MetricCard label="Net Income" primaryValue="₹24,382.57 Cr" loading />
+                <MetricCard label="Operating Margin" primaryValue="18.75%" loading />
+                <MetricCard label="Free Cash Flow" primaryValue="₹8,420 Cr" loading />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Responsive KPI Grid</h3>
+              <p className="text-xs text-text-muted mb-4">Resize viewport to verify 1 column mobile, 2 columns tablet, 4 columns desktop. No horizontal overflow. Cards use available width.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <MetricCard
+                  label="Revenue"
+                  primaryValue="₹1.24T"
+                  trend="+12.4%"
+                  trendStatus="positive"
+                  comparisonPeriod="vs FY 2025"
+                />
+                <MetricCard
+                  label="Net Income"
+                  primaryValue="₹24,382.57 Cr"
+                  trend="+8.3%"
+                  trendStatus="positive"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Operating Margin"
+                  primaryValue="18.75%"
+                  trend="+240 bps"
+                  trendStatus="positive"
+                  comparisonPeriod="YoY"
+                />
+                <MetricCard
+                  label="Free Cash Flow"
+                  primaryValue="₹8,420 Cr"
+                  trend="-3.2%"
+                  trendStatus="negative"
+                  comparisonPeriod="vs FY 2025"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Themes</h3>
+              <p className="text-xs text-text-muted mb-4">MetricCards render in both Light and Dark themes using existing tokens.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <MetricCard
+                  label="Revenue"
+                  primaryValue="₹1.24T"
+                  trend="+12.4%"
+                  trendStatus="positive"
+                  comparisonPeriod="vs FY 2025"
+                />
+                <MetricCard
+                  label="Operating Expenses"
+                  primaryValue="₹42,680 Cr"
+                  trend="+8.5%"
+                  trendStatus="negative"
+                  comparisonPeriod="vs FY 2025"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section>
           <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
