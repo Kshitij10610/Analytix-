@@ -1,0 +1,165 @@
+# ============================================
+# Root .gitignore — Analytix Repository
+# ============================================
+
+# --------------------------------------------
+# Environment & Secrets
+# --------------------------------------------
+.env
+.env.*
+.env.local
+.env.*.local
+.envrc
+!.env.example
+
+# Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.secret
+vault.json
+
+# --------------------------------------------
+# Dependencies
+# --------------------------------------------
+node_modules/
+bower_components/
+vendor/
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --------------------------------------------
+# Next.js / Frontend Build Output
+# --------------------------------------------
+.next/
+out/
+/build
+/.next/cache/
+
+# --------------------------------------------
+# Testing / Coverage
+# --------------------------------------------
+coverage/
+.nyc_output/
+.pytest_cache/
+.jest/
+.vitest/
+htmlcov/
+.tox/
+.nox/
+
+# --------------------------------------------
+# IDE / Editor Files
+# --------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.metadata/
+*.iml
+*.ipr
+*.iws
+
+# --------------------------------------------
+# OS-Generated Files
+# --------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# --------------------------------------------
+# Logs
+# --------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+*.out
+*.err
+
+# --------------------------------------------
+# Temporary / Cache Files
+# --------------------------------------------
+tmp/
+temp/
+.tmp/
+.cache/
+.parcel-cache/
+.svelte-kit/
+.astro/
+.hugo_build.lock
+.react-router/
+
+# --------------------------------------------
+# Misc
+# --------------------------------------------
+.vercel/
+.netlify/
+*.tsbuildinfo
+*.tsbuildinfo.*
+*.pid
+*.seed
+*.pid.lock
+*.gz
+*.tgz
+*.zip
+*.tar
+*.rar
+*.7z
+
+# --------------------------------------------
+# Do NOT Ignore These
+# --------------------------------------------
+!.env.example
+!*.spec.md
+!*.md
+!.gitignore
