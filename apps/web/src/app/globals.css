@@ -1,26 +1,315 @@
 @import "tailwindcss";
 
+/* ============================================
+   ANALYTIX DESIGN TOKENS
+   Source of truth: docs/color-system, docs/theme-system, docs/financial-chart-colors
+   ============================================ */
+
+/* --------------------------------------------
+   Light Theme (Default)
+   -------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --primary: #2563eb;
+  --secondary: #14b8a6;
+  --accent: #d946ef;
+  --finance-accent: #059669;
+  --ai-accent: #e879f9;
+
+  /* Semantic Colors */
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #2563eb;
+  --positive-financial: #059669;
+  --negative-financial: #dc2626;
+  --neutral-financial: #71717a;
+  --pending: #71717a;
+  --processing: #d946ef;
+  --completed: #059669;
+  --archived: #a1a1aa;
+
+  /* Neutral Scale */
+  --neutral-50: #fafafa;
+  --neutral-100: #f4f4f5;
+  --neutral-200: #e4e4e7;
+  --neutral-300: #d4d4d8;
+  --neutral-400: #a1a1aa;
+  --neutral-500: #71717a;
+  --neutral-600: #52525b;
+  --neutral-700: #3f3f46;
+  --neutral-800: #27272a;
+  --neutral-900: #18181b;
+  --neutral-950: #0a0a0a;
+
+  /* Background & Surface */
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-sidebar: #f4f4f5;
+  --surface-navbar: #ffffff;
+  --surface-card: #ffffff;
+  --surface-dialog: #ffffff;
+  --surface-popover: #ffffff;
+  --surface-hover: #f4f4f5;
+  --surface-selected: #eff6ff;
+  --surface-active: #dbeafe;
+  --surface-disabled: #f4f4f5;
+
+  /* Border & Divider */
+  --border-default: #e4e4e7;
+  --border-subtle: #f4f4f5;
+  --border-strong: #d4d4d8;
+  --border-inverse: #ffffff;
+  --divider: #e4e4e7;
+  --divider-subtle: #f4f4f5;
+
+  /* Text */
+  --text-primary: #0a0a0a;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --text-disabled: #a1a1aa;
+  --text-inverse: #ffffff;
+  --text-link: #2563eb;
+  --text-heading: #0a0a0a;
+  --text-caption: #71717a;
 }
 
+/* --------------------------------------------
+   Dark Theme — System Preference
+   -------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Brand Colors */
+    --primary: #60a5fa;
+    --secondary: #2dd4bf;
+    --accent: #e879f9;
+    --finance-accent: #34d399;
+    --ai-accent: #e879f9;
+
+    /* Semantic Colors */
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
+    --info: #60a5fa;
+    --positive-financial: #34d399;
+    --negative-financial: #f87171;
+    --neutral-financial: #a1a1aa;
+    --pending: #a1a1aa;
+    --processing: #e879f9;
+    --completed: #34d399;
+    --archived: #52525b;
+
+    /* Background & Surface */
+    --background: #0a0a0a;
+    --foreground: #fafafa;
+    --surface: #18181b;
+    --surface-elevated: #27272a;
+    --surface-overlay: #3f3f46;
+    --surface-sidebar: #0a0a0a;
+    --surface-navbar: #18181b;
+    --surface-card: #18181b;
+    --surface-dialog: #27272a;
+    --surface-popover: #27272a;
+    --surface-hover: #27272a;
+    --surface-selected: #172554;
+    --surface-active: #1e3a8a;
+    --surface-disabled: #18181b;
+
+    /* Border & Divider */
+    --border-default: #3f3f46;
+    --border-subtle: #27272a;
+    --border-strong: #52525b;
+    --border-inverse: #0a0a0a;
+    --divider: #3f3f46;
+    --divider-subtle: #27272a;
+
+    /* Text */
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #a1a1aa;
+    --text-disabled: #52525b;
+    --text-inverse: #0a0a0a;
+    --text-link: #60a5fa;
+    --text-heading: #fafafa;
+    --text-caption: #a1a1aa;
+  }
+}
+
+/* --------------------------------------------
+   Dark Theme — Class Based (next-themes / shadcn/ui)
+   -------------------------------------------- */
+.dark {
+  /* Brand Colors */
+  --primary: #60a5fa;
+  --secondary: #2dd4bf;
+  --accent: #e879f9;
+  --finance-accent: #34d399;
+  --ai-accent: #e879f9;
+
+  /* Semantic Colors */
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #f87171;
+  --info: #60a5fa;
+  --positive-financial: #34d399;
+  --negative-financial: #f87171;
+  --neutral-financial: #a1a1aa;
+  --pending: #a1a1aa;
+  --processing: #e879f9;
+  --completed: #34d399;
+  --archived: #52525b;
+
+  /* Background & Surface */
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --surface: #18181b;
+  --surface-elevated: #27272a;
+  --surface-overlay: #3f3f46;
+  --surface-sidebar: #0a0a0a;
+  --surface-navbar: #18181b;
+  --surface-card: #18181b;
+  --surface-dialog: #27272a;
+  --surface-popover: #27272a;
+  --surface-hover: #27272a;
+  --surface-selected: #172554;
+  --surface-active: #1e3a8a;
+  --surface-disabled: #18181b;
+
+  /* Border & Divider */
+  --border-default: #3f3f46;
+  --border-subtle: #27272a;
+  --border-strong: #52525b;
+  --border-inverse: #0a0a0a;
+  --divider: #3f3f46;
+  --divider-subtle: #27272a;
+
+  /* Text */
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #a1a1aa;
+  --text-disabled: #52525b;
+  --text-inverse: #0a0a0a;
+  --text-link: #60a5fa;
+  --text-heading: #fafafa;
+  --text-caption: #a1a1aa;
+}
+
+/* ============================================
+   TAILWIND CSS v4 THEME MAPPING
+   Maps CSS variables to Tailwind utility classes
+   Compatible with future shadcn/ui
+   ============================================ */
 @theme inline {
+  /* Base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Surface System */
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-sidebar: var(--surface-sidebar);
+  --color-surface-navbar: var(--surface-navbar);
+  --color-surface-card: var(--surface-card);
+  --color-surface-dialog: var(--surface-dialog);
+  --color-surface-popover: var(--surface-popover);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-selected: var(--surface-selected);
+  --color-surface-active: var(--surface-active);
+  --color-surface-disabled: var(--surface-disabled);
+
+  /* Border & Divider */
+  --color-border: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-inverse: var(--border-inverse);
+  --color-divider: var(--divider);
+  --color-divider-subtle: var(--divider-subtle);
+
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-link: var(--text-link);
+  --color-text-heading: var(--text-heading);
+  --color-text-caption: var(--text-caption);
+
+  /* Brand */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-finance-accent: var(--finance-accent);
+  --color-ai-accent: var(--ai-accent);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  --color-positive-financial: var(--positive-financial);
+  --color-negative-financial: var(--negative-financial);
+  --color-neutral-financial: var(--neutral-financial);
+  --color-pending: var(--pending);
+  --color-processing: var(--processing);
+  --color-completed: var(--completed);
+  --color-archived: var(--archived);
+
+  /* Neutral Scale */
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  /* Chart Palette */
+  --color-chart-revenue: #2563eb;
+  --color-chart-expenses: #0d9488;
+  --color-chart-profit: #059669;
+  --color-chart-loss: #dc2626;
+  --color-chart-assets: #2563eb;
+  --color-chart-liabilities: #d97706;
+  --color-chart-forecast: #d946ef;
+  --color-chart-trend: #2563eb;
+  --color-chart-benchmark: #a1a1aa;
+  --color-chart-comparison: #0d9488;
+  --color-chart-risk: #dc2626;
+  --color-chart-opportunity: #059669;
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ============================================
+   BASE STYLES
+   ============================================ */
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ============================================
+   BASE LAYER UTILITIES
+   ============================================ */
+@layer base {
+  * {
+    border-color: var(--border-default);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+  }
 }
