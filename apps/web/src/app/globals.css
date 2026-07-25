@@ -2,7 +2,7 @@
 
 /* ============================================
    ANALYTIX DESIGN TOKENS
-   Source of truth: docs/color-system, docs/theme-system, docs/financial-chart-colors
+   Source of truth: docs/brand-identity.md, docs/theme-system.md, docs/financial-chart-colors.md
    ============================================ */
 
 /* --------------------------------------------
@@ -198,12 +198,181 @@
 }
 
 /* ============================================
-   TAILWIND CSS v4 THEME MAPPING
-   Maps CSS variables to Tailwind utility classes
-   Compatible with future shadcn/ui
+   TYPOGRAPHY TOKENS
+   Source: docs/brand-identity.md typography scale
+   Temporary font: Geist/Geist Mono (Geist Sans)
+   Approved brand font: Instrument Sans (not yet installed)
+   Approved mono font: JetBrains Mono (not yet installed)
    ============================================ */
+
+/* Font Families */
+:root {
+  --font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: var(--font-geist-mono), 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, monospace;
+}
+
+/* --------------------------------------------
+   Typography Scale Tokens
+   -------------------------------------------- */
+:root {
+  /* Display */
+  --font-display-size: 48px;
+  --font-display-weight: 700;
+  --font-display-line-height: 1.05;
+  --font-display-letter-spacing: -0.02em;
+
+  /* H1 */
+  --font-h1-size: 36px;
+  --font-h1-weight: 600;
+  --font-h1-line-height: 1.2;
+  --font-h1-letter-spacing: 0;
+
+  /* H2 */
+  --font-h2-size: 28px;
+  --font-h2-weight: 600;
+  --font-h2-line-height: 1.25;
+  --font-h2-letter-spacing: 0;
+
+  /* H3 */
+  --font-h3-size: 22px;
+  --font-h3-weight: 600;
+  --font-h3-line-height: 1.3;
+  --font-h3-letter-spacing: 0;
+
+  /* H4 */
+  --font-h4-size: 18px;
+  --font-h4-weight: 600;
+  --font-h4-line-height: 1.4;
+  --font-h4-letter-spacing: 0;
+
+  /* Body Large */
+  --font-body-lg-size: 18px;
+  --font-body-lg-weight: 400;
+  --font-body-lg-line-height: 1.6;
+  --font-body-lg-letter-spacing: 0;
+
+  /* Body */
+  --font-body-size: 16px;
+  --font-body-weight: 400;
+  --font-body-line-height: 1.6;
+  --font-body-letter-spacing: 0;
+
+  /* Body Small */
+  --font-body-sm-size: 14px;
+  --font-body-sm-weight: 400;
+  --font-body-sm-line-height: 1.5;
+  --font-body-sm-letter-spacing: 0.01em;
+
+  /* Label */
+  --font-label-size: 13px;
+  --font-label-weight: 500;
+  --font-label-line-height: 1.5;
+  --font-label-letter-spacing: 0.02em;
+
+  /* Caption */
+  --font-caption-size: 12px;
+  --font-caption-weight: 500;
+  --font-caption-line-height: 1.5;
+  --font-caption-letter-spacing: 0.03em;
+
+  /* Button */
+  --font-button-size: 14px;
+  --font-button-weight: 500;
+  --font-button-line-height: 1.5;
+  --font-button-letter-spacing: 0.02em;
+
+  /* Table */
+  --font-table-size: 13px;
+  --font-table-weight: 400;
+  --font-table-line-height: 1.6;
+  --font-table-letter-spacing: 0;
+
+  /* Numeric Data */
+  --font-numeric-size: 14px;
+  --font-numeric-weight: 500;
+  --font-numeric-line-height: 1.5;
+  --font-numeric-letter-spacing: 0;
+
+  /* Code / Monospace */
+  --font-code-size: 13px;
+  --font-code-weight: 400;
+  --font-code-line-height: 1.5;
+  --font-code-letter-spacing: 0;
+}
+
+/* --------------------------------------------
+   Tailwind CSS v4 Theme Mapping
+   -------------------------------------------- */
 @theme inline {
-  /* Base */
+  /* Font Families */
+  --font-sans: var(--font-family);
+  --font-mono: var(--font-family-mono);
+
+  /* Font Sizes */
+  --text-display: var(--font-display-size);
+  --text-h1: var(--font-h1-size);
+  --text-h2: var(--font-h2-size);
+  --text-h3: var(--font-h3-size);
+  --text-h4: var(--font-h4-size);
+  --text-body-lg: var(--font-body-lg-size);
+  --text-body: var(--font-body-size);
+  --text-body-sm: var(--font-body-sm-size);
+  --text-label: var(--font-label-size);
+  --text-caption: var(--font-caption-size);
+  --text-button: var(--font-button-size);
+  --text-table: var(--font-table-size);
+  --text-numeric: var(--font-numeric-size);
+  --text-code: var(--font-code-size);
+
+  /* Font Weights */
+  --font-weight-display: var(--font-display-weight);
+  --font-weight-h1: var(--font-h1-weight);
+  --font-weight-h2: var(--font-h2-weight);
+  --font-weight-h3: var(--font-h3-weight);
+  --font-weight-h4: var(--font-h4-weight);
+  --font-weight-body-lg: var(--font-body-lg-weight);
+  --font-weight-body: var(--font-body-weight);
+  --font-weight-body-sm: var(--font-body-sm-weight);
+  --font-weight-label: var(--font-label-weight);
+  --font-weight-caption: var(--font-caption-weight);
+  --font-weight-button: var(--font-button-weight);
+  --font-weight-table: var(--font-table-weight);
+  --font-weight-numeric: var(--font-numeric-weight);
+  --font-weight-code: var(--font-code-weight);
+
+  /* Line Heights */
+  --leading-display: var(--font-display-line-height);
+  --leading-h1: var(--font-h1-line-height);
+  --leading-h2: var(--font-h2-line-height);
+  --leading-h3: var(--font-h3-line-height);
+  --leading-h4: var(--font-h4-line-height);
+  --leading-body-lg: var(--font-body-lg-line-height);
+  --leading-body: var(--font-body-line-height);
+  --leading-body-sm: var(--font-body-sm-line-height);
+  --leading-label: var(--font-label-line-height);
+  --leading-caption: var(--font-caption-line-height);
+  --leading-button: var(--font-button-line-height);
+  --leading-table: var(--font-table-line-height);
+  --leading-numeric: var(--font-numeric-line-height);
+  --leading-code: var(--font-code-line-height);
+
+  /* Letter Spacing */
+  --tracking-display: var(--font-display-letter-spacing);
+  --tracking-h1: var(--font-h1-letter-spacing);
+  --tracking-h2: var(--font-h2-letter-spacing);
+  --tracking-h3: var(--font-h3-letter-spacing);
+  --tracking-h4: var(--font-h4-letter-spacing);
+  --tracking-body-lg: var(--font-body-lg-letter-spacing);
+  --tracking-body: var(--font-body-weight);
+  --tracking-body-sm: var(--font-body-sm-letter-spacing);
+  --tracking-label: var(--font-label-letter-spacing);
+  --tracking-caption: var(--font-caption-letter-spacing);
+  --tracking-button: var(--font-button-letter-spacing);
+  --tracking-table: var(--font-table-letter-spacing);
+  --tracking-numeric: var(--font-numeric-letter-spacing);
+  --tracking-code: var(--font-code-letter-spacing);
+
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -286,9 +455,54 @@
   --color-chart-risk: #dc2626;
   --color-chart-opportunity: #059669;
 
-  /* Fonts */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Spacing */
+  --spacing-0: var(--space-0);
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+
+  /* Radius */
+  --radius-none: var(--radius-none);
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-dropdown: var(--shadow-dropdown);
+  --shadow-popover: var(--shadow-popover);
+  --shadow-dialog: var(--shadow-dialog);
+
+  /* Focus Ring */
+  --focus-ring-width: var(--border-focus-width);
+  --focus-ring-offset: var(--border-focus-offset);
+  --focus-ring-radius: var(--border-focus-radius);
+  --focus-ring-color: var(--focus-ring-color);
+
+  /* Layout */
+  --container-content: var(--container-content);
+  --container-dashboard: var(--container-dashboard);
+  --container-reading: var(--container-reading);
+  --page-padding: var(--page-padding);
+  --section-gap: var(--section-gap);
+  --card-gap: var(--card-gap);
 }
 
 /* ============================================
@@ -298,6 +512,117 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ============================================
+   SPACING TOKENS
+   4px base unit. Source: docs/brand-identity.md spacing scale.
+   ============================================ */
+:root {
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+}
+
+/* --------------------------------------------
+   RADIUS TOKENS
+   Restrained for financial/professional context.
+   -------------------------------------------- */
+:root {
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* --------------------------------------------
+   BORDER TOKENS
+   -------------------------------------------- */
+:root {
+  --border-focus-width: 2px;
+  --border-focus-offset: 2px;
+  --border-focus-radius: 4px;
+}
+
+/* --------------------------------------------
+   ELEVATION / SHADOW TOKENS
+   Brand guidance: hierarchy through surface elevation, not shadow.
+   Shadows are subtle and primarily used for marketing / dark-theme depth.
+   -------------------------------------------- */
+:root {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 12px 20px -6px rgba(0, 0, 0, 0.1);
+
+  --shadow-dropdown: var(--shadow-sm);
+  --shadow-popover: var(--shadow-md);
+  --shadow-dialog: var(--shadow-lg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 20px -6px rgba(0, 0, 0, 0.6);
+
+    --shadow-dropdown: var(--shadow-xs);
+    --shadow-popover: var(--shadow-sm);
+    --shadow-dialog: var(--shadow-md);
+  }
+}
+
+.dark {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 12px 20px -6px rgba(0, 0, 0, 0.6);
+
+  --shadow-dropdown: var(--shadow-xs);
+  --shadow-popover: var(--shadow-sm);
+  --shadow-dialog: var(--shadow-md);
+}
+
+/* --------------------------------------------
+   FOCUS RING TOKENS
+   Keyboard accessibility. WCAG 2.1 AA compliant.
+   -------------------------------------------- */
+:root {
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-radius: 4px;
+  --focus-ring-color: var(--primary);
+}
+
+/* --------------------------------------------
+   CONTAINER / LAYOUT TOKENS
+   Desktop-first financial dashboard with responsive behavior.
+   -------------------------------------------- */
+:root {
+  --container-content: 1280px;
+  --container-dashboard: 1440px;
+  --container-reading: 768px;
+  --page-padding: var(--space-6);
+  --section-gap: var(--space-12);
+  --card-gap: var(--space-4);
 }
 
 /* ============================================
@@ -311,5 +636,98 @@ body {
   body {
     background-color: var(--background);
     color: var(--text-primary);
+    font-family: var(--font-family);
+  }
+
+  /* Typography Scale */
+  h1 {
+    font-size: var(--font-h1-size);
+    font-weight: var(--font-h1-weight);
+    line-height: var(--font-h1-line-height);
+    letter-spacing: var(--font-h1-letter-spacing);
+    color: var(--text-heading);
+  }
+
+  h2 {
+    font-size: var(--font-h2-size);
+    font-weight: var(--font-h2-weight);
+    line-height: var(--font-h2-line-height);
+    letter-spacing: var(--font-h2-letter-spacing);
+    color: var(--text-heading);
+  }
+
+  h3 {
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-h3-weight);
+    line-height: var(--font-h3-line-height);
+    letter-spacing: var(--font-h3-letter-spacing);
+    color: var(--text-heading);
+  }
+
+  h4 {
+    font-size: var(--font-h4-size);
+    font-weight: var(--font-h4-weight);
+    line-height: var(--font-h4-line-height);
+    letter-spacing: var(--font-h4-letter-spacing);
+    color: var(--text-heading);
+  }
+
+  p {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
+    line-height: var(--font-body-line-height);
+    letter-spacing: var(--font-body-letter-spacing);
+    color: var(--text-primary);
+  }
+
+  /* Numeric Financial Data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-numeric-size);
+    font-weight: var(--font-numeric-weight);
+    line-height: var(--font-numeric-line-height);
+    letter-spacing: var(--font-numeric-letter-spacing);
+  }
+
+  /* Code / Monospace */
+  code, pre, .font-mono {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-code-size);
+    font-weight: var(--font-code-weight);
+    line-height: var(--font-code-line-height);
+    letter-spacing: var(--font-code-letter-spacing);
+  }
+
+  /* Focus Ring — Keyboard Accessibility */
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--focus-ring-radius);
+  }
+
+  /* Layout Utilities */
+  .container-content {
+    max-width: var(--container-content);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+  }
+
+  .container-dashboard {
+    max-width: var(--container-dashboard);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+  }
+
+  .container-reading {
+    max-width: var(--container-reading);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
   }
 }

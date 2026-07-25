@@ -10,6 +10,19 @@ interface Swatch {
   isSurface?: boolean
 }
 
+interface TypographySample {
+  name: string
+  example: string
+  fontFamily: string
+  size: string
+  weight: string
+  lineHeight: string
+  letterSpacing: string
+  className: string
+  mono?: boolean
+  tabular?: boolean
+}
+
 const cssVarMap: Record<string, string> = {
   "--primary": "#2563eb",
   "--secondary": "#14b8a6",
@@ -175,6 +188,196 @@ const sections: { title: string; items: Swatch[] }[] = [
   },
 ]
 
+const typographySamples: TypographySample[] = [
+  {
+    name: "Display",
+    example: "Financial Intelligence, Simplified",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "48px",
+    weight: "700",
+    lineHeight: "1.05",
+    letterSpacing: "-0.02em",
+    className: "text-display",
+  },
+  {
+    name: "H1",
+    example: "Reliance Industries",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "36px",
+    weight: "600",
+    lineHeight: "1.2",
+    letterSpacing: "0",
+    className: "text-h1",
+  },
+  {
+    name: "H2",
+    example: "Operating Margin Analysis",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "28px",
+    weight: "600",
+    lineHeight: "1.25",
+    letterSpacing: "0",
+    className: "text-h2",
+  },
+  {
+    name: "H3",
+    example: "DCF Valuation Model",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "22px",
+    weight: "600",
+    lineHeight: "1.3",
+    letterSpacing: "0",
+    className: "text-h3",
+  },
+  {
+    name: "H4",
+    example: "Sensitivity Analysis",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "18px",
+    weight: "600",
+    lineHeight: "1.4",
+    letterSpacing: "0",
+    className: "text-h4",
+  },
+  {
+    name: "Body Large",
+    example: "Revenue increased 12.4% year-over-year, driven by strong performance in the digital services segment and expanded market reach across emerging markets.",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "18px",
+    weight: "400",
+    lineHeight: "1.6",
+    letterSpacing: "0",
+    className: "text-body-lg",
+  },
+  {
+    name: "Body",
+    example: "The company reported a net income of ₹24,382.57 crore for the fiscal year ended March 31, 2026. Operating margins expanded 240 basis points year-over-year.",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "16px",
+    weight: "400",
+    lineHeight: "1.6",
+    letterSpacing: "0",
+    className: "text-body",
+  },
+  {
+    name: "Body Small",
+    example: "Data sourced from company filings and analyst estimates. Past performance does not guarantee future results.",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "14px",
+    weight: "400",
+    lineHeight: "1.5",
+    letterSpacing: "0.01em",
+    className: "text-body-sm",
+  },
+  {
+    name: "Label",
+    example: "COMPANY",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "13px",
+    weight: "500",
+    lineHeight: "1.5",
+    letterSpacing: "0.02em",
+    className: "text-label",
+  },
+  {
+    name: "Caption",
+    example: "Last updated 2 hours ago",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "12px",
+    weight: "500",
+    lineHeight: "1.5",
+    letterSpacing: "0.03em",
+    className: "text-caption",
+  },
+  {
+    name: "Button",
+    example: "Run Analysis",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "14px",
+    weight: "500",
+    lineHeight: "1.5",
+    letterSpacing: "0.02em",
+    className: "text-button",
+  },
+  {
+    name: "Table",
+    example: "Company | Revenue | Margin | Growth",
+    fontFamily: "Geist Sans / Instrument Sans",
+    size: "13px",
+    weight: "400",
+    lineHeight: "1.6",
+    letterSpacing: "0",
+    className: "text-table",
+  },
+  {
+    name: "Numeric Data",
+    example: "₹24,382.57  |  +12.48%  |  -3.21%  |  ₹1.24T  |  18.75%  |  FY 2026",
+    fontFamily: "Geist Mono / JetBrains Mono",
+    size: "14px",
+    weight: "500",
+    lineHeight: "1.5",
+    letterSpacing: "0",
+    className: "text-numeric tabular-nums",
+    mono: true,
+    tabular: true,
+  },
+  {
+    name: "Code / Monospace",
+    example: "const dcf = new DCFModel({ WACC: 0.0925, terminalGrowth: 0.025 });",
+    fontFamily: "Geist Mono / JetBrains Mono",
+    size: "13px",
+    weight: "400",
+    lineHeight: "1.5",
+    letterSpacing: "0",
+    className: "text-code font-mono",
+    mono: true,
+  },
+]
+
+const spacingTokens = [
+  { name: "space-1", value: "4px", rem: "0.25rem" },
+  { name: "space-2", value: "8px", rem: "0.5rem" },
+  { name: "space-3", value: "12px", rem: "0.75rem" },
+  { name: "space-4", value: "16px", rem: "1rem" },
+  { name: "space-5", value: "20px", rem: "1.25rem" },
+  { name: "space-6", value: "24px", rem: "1.5rem" },
+  { name: "space-8", value: "32px", rem: "2rem" },
+  { name: "space-10", value: "40px", rem: "2.5rem" },
+  { name: "space-12", value: "48px", rem: "3rem" },
+  { name: "space-16", value: "64px", rem: "4rem" },
+  { name: "space-20", value: "80px", rem: "5rem" },
+  { name: "space-24", value: "96px", rem: "6rem" },
+]
+
+const radiusTokens = [
+  { name: "none", value: "0px" },
+  { name: "xs", value: "2px" },
+  { name: "sm", value: "4px" },
+  { name: "md", value: "6px" },
+  { name: "lg", value: "8px" },
+  { name: "xl", value: "12px" },
+  { name: "2xl", value: "16px" },
+  { name: "full", value: "9999px" },
+]
+
+const borderTokens = [
+  { name: "default", width: "1px", color: "var(--border-default)" },
+  { name: "subtle", width: "1px", color: "var(--border-subtle)" },
+  { name: "strong", width: "2px", color: "var(--border-strong)" },
+  { name: "focus", width: "2px", color: "var(--primary)", offset: "2px" },
+]
+
+const elevationTokens = [
+  { name: "xs", value: "var(--shadow-xs)" },
+  { name: "sm", value: "var(--shadow-sm)" },
+  { name: "md", value: "var(--shadow-md)" },
+  { name: "lg", value: "var(--shadow-lg)" },
+  { name: "xl", value: "var(--shadow-xl)" },
+  { name: "dropdown", value: "var(--shadow-dropdown)" },
+  { name: "popover", value: "var(--shadow-popover)" },
+  { name: "dialog", value: "var(--shadow-dialog)" },
+]
+
 function Swatch({ token, hex, description, isText, isSurface }: Swatch) {
   const bg = isText ? cssVarMap["--surface"] : undefined
   const textColor = isSurface ? cssVarMap["--text-primary"] : undefined
@@ -213,6 +416,184 @@ function Swatch({ token, hex, description, isText, isSurface }: Swatch) {
           <span className="text-xs font-mono uppercase tracking-wide">{hex}</span>
         </div>
         <p className="text-xs text-text-muted leading-snug">{description}</p>
+      </div>
+    </div>
+  )
+}
+
+function TypographySample({ sample }: { sample: TypographySample }) {
+  return (
+    <div className="flex flex-col rounded-lg border border-border overflow-hidden">
+      <div className="p-4 bg-surface">
+        <div className={`${sample.className} text-text-primary break-words`}>
+          {sample.example}
+        </div>
+      </div>
+      <div className="flex flex-col gap-0.5 p-3">
+        <code className="text-xs font-mono text-text-secondary">{sample.name}</code>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-1">
+          <div className="text-xs text-text-muted">Family</div>
+          <div className="text-xs text-text-secondary text-right">{sample.fontFamily}</div>
+          <div className="text-xs text-text-muted">Size</div>
+          <div className="text-xs text-text-secondary text-right">{sample.size}</div>
+          <div className="text-xs text-text-muted">Weight</div>
+          <div className="text-xs text-text-secondary text-right">{sample.weight}</div>
+          <div className="text-xs text-text-muted">Line Height</div>
+          <div className="text-xs text-text-secondary text-right">{sample.lineHeight}</div>
+          <div className="text-xs text-text-muted">Tracking</div>
+          <div className="text-xs text-text-secondary text-right">{sample.letterSpacing}</div>
+        </div>
+        {sample.mono && (
+          <div className="mt-2 pt-2 border-t border-border">
+            <span className="text-xs font-mono text-positive-financial tabular-nums">
+              {sample.example}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function LayoutSection() {
+  return (
+    <div className="space-y-8">
+      {/* Spacing */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Spacing</h3>
+        <div className="flex flex-wrap items-end gap-4">
+          {spacingTokens.map((token) => (
+            <div key={token.name} className="flex flex-col items-center gap-2">
+              <div className="bg-primary/10 border border-primary/20 rounded" style={{ width: token.value, height: token.value }} />
+              <div className="text-center">
+                <div className="text-xs font-mono text-text-secondary">{token.name}</div>
+                <div className="text-xs text-text-muted">{token.value}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Radius */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Border Radius</h3>
+        <div className="flex flex-wrap items-center gap-4">
+          {radiusTokens.map((token) => (
+            <div key={token.name} className="flex flex-col items-center gap-2">
+              <div className="bg-primary/10 border border-primary/20" style={{ borderRadius: token.value, width: 48, height: 48 }} />
+              <div className="text-center">
+                <div className="text-xs font-mono text-text-secondary">{token.name}</div>
+                <div className="text-xs text-text-muted">{token.value}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Borders */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Borders</h3>
+        <div className="flex flex-wrap items-center gap-4">
+          {borderTokens.map((token) => (
+            <div key={token.name} className="flex flex-col items-center gap-2">
+              <div
+                className="bg-surface"
+                style={{
+                  borderWidth: token.width,
+                  borderStyle: "solid",
+                  borderColor: token.color,
+                  outline: token.name === "focus" ? `${token.width} solid ${token.color}` : "none",
+                  outlineOffset: token.offset || "0",
+                  width: 64,
+                  height: 48,
+                }}
+              />
+              <div className="text-center">
+                <div className="text-xs font-mono text-text-secondary">{token.name}</div>
+                <div className="text-xs text-text-muted">{token.width}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Elevation */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Elevation / Shadows</h3>
+        <div className="flex flex-wrap items-center gap-4">
+          {elevationTokens.map((token) => (
+            <div key={token.name} className="flex flex-col items-center gap-2">
+              <div
+                className="bg-surface border border-border"
+                style={{ boxShadow: token.value, width: 80, height: 48 }}
+              />
+              <div className="text-center">
+                <div className="text-xs font-mono text-text-secondary">{token.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Focus Ring */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Focus Ring (Keyboard)</h3>
+        <div className="flex flex-wrap items-center gap-4">
+          <button
+            className="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium"
+            style={{ outline: "var(--focus-ring-width) solid var(--focus-ring-color)", outlineOffset: "var(--focus-ring-offset)", borderRadius: "var(--focus-ring-radius)" }}
+          >
+            Focused Element
+          </button>
+          <div className="text-xs text-text-muted">
+            Press Tab to see focus ring on interactive elements
+          </div>
+        </div>
+      </div>
+
+      {/* Layout */}
+      <div>
+        <h3 className="text-sm font-semibold text-text-secondary mb-3 uppercase tracking-wider">Layout Containers</h3>
+        <div className="space-y-4">
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">content</div>
+            <div className="h-12 bg-primary/10 border border-dashed border-primary/30 rounded flex items-center justify-center" style={{ maxWidth: "var(--container-content)", width: "100%" }}>
+              <span className="text-xs text-text-muted">1280px</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">dashboard</div>
+            <div className="h-12 bg-primary/10 border border-dashed border-primary/30 rounded flex items-center justify-center" style={{ maxWidth: "var(--container-dashboard)", width: "100%" }}>
+              <span className="text-xs text-text-muted">1440px</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">reading</div>
+            <div className="h-12 bg-primary/10 border border-dashed border-primary/30 rounded flex items-center justify-center" style={{ maxWidth: "var(--container-reading)", width: "100%" }}>
+              <span className="text-xs text-text-muted">768px</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">page padding</div>
+            <div className="h-12 bg-surface border border-border rounded flex items-center justify-center" style={{ paddingLeft: "var(--page-padding)", paddingRight: "var(--page-padding)" }}>
+              <span className="text-xs text-text-muted">24px</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">section gap</div>
+            <div className="h-12 bg-surface border border-border rounded flex items-center justify-center" style={{ gap: "var(--section-gap)" }}>
+              <div className="w-8 h-8 bg-primary/10 rounded" />
+              <div className="w-8 h-8 bg-primary/10 rounded" />
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-32 text-xs font-mono text-text-secondary">card gap</div>
+            <div className="h-12 bg-surface border border-border rounded flex items-center justify-center" style={{ gap: "var(--card-gap)" }}>
+              <div className="w-8 h-8 bg-primary/10 rounded" />
+              <div className="w-8 h-8 bg-primary/10 rounded" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -275,11 +656,29 @@ export default function DesignSystemPage() {
             </div>
           </section>
         ))}
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Typography
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {typographySamples.map((sample) => (
+              <TypographySample key={sample.name} sample={sample} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Layout & Foundations
+          </h2>
+          <LayoutSection />
+        </section>
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-8 border-t border-border mt-12">
         <p className="text-xs text-text-muted">
-          Source of truth: docs/brand-colors.md, semantic-colors.md, theme-system.md, financial-chart-colors.md
+          Source of truth: docs/brand-colors.md, semantic-colors.md, theme-system.md, financial-chart-colors.md, brand-identity.md
         </p>
       </div>
     </div>
