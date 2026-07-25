@@ -8,3 +8,5 @@ export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 export { TrendIndicator } from "./trend-indicator"
 export { FinancialMetric } from "./financial-metric"
 export { MetricCard } from "./metric-card"
+export { DataTable } from "./data-table"
+export { NumericCell, CurrencyCell, PercentageCell, TrendCell, StatusCell } from "./table-cells"

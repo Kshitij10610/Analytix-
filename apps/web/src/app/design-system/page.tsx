@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button, IconButton, Badge, Input, Textarea, Select, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, TrendIndicator, FinancialMetric, MetricCard } from "@/components/primitives"
+import { Button, IconButton, Badge, Input, Textarea, Select, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, TrendIndicator, FinancialMetric, MetricCard, DataTable, CurrencyCell, PercentageCell, TrendCell, StatusCell } from "@/components/primitives"
 
 interface Swatch {
   token: string
@@ -332,6 +332,80 @@ const typographySamples: TypographySample[] = [
     letterSpacing: "0",
     className: "text-code font-mono",
     mono: true,
+  },
+]
+
+interface CompanyRow {
+  company: string
+  revenue: string
+  revenueValue: number
+  netIncome: string
+  netIncomeValue: number
+  margin: string
+  marginValue: number
+  revenueGrowth: string
+  revenueGrowthValue: number
+  growthStatus: "positive" | "negative" | "neutral"
+  status: string
+  statusVariant: "neutral" | "primary" | "success" | "warning" | "error" | "info" | "positive" | "negative"
+}
+
+const companyRows: CompanyRow[] = [
+  {
+    company: "Reliance Industries",
+    revenue: "₹9.6T",
+    revenueValue: 9.6,
+    netIncome: "₹790B",
+    netIncomeValue: 790,
+    margin: "8.2%",
+    marginValue: 8.2,
+    revenueGrowth: "+12.4%",
+    revenueGrowthValue: 12.4,
+    growthStatus: "positive",
+    status: "Completed",
+    statusVariant: "success",
+  },
+  {
+    company: "TCS",
+    revenue: "₹2.4T",
+    revenueValue: 2.4,
+    netIncome: "₹460B",
+    netIncomeValue: 460,
+    margin: "19.1%",
+    marginValue: 19.1,
+    revenueGrowth: "+8.3%",
+    revenueGrowthValue: 8.3,
+    growthStatus: "positive",
+    status: "Completed",
+    statusVariant: "success",
+  },
+  {
+    company: "Infosys",
+    revenue: "₹1.5T",
+    revenueValue: 1.5,
+    netIncome: "₹260B",
+    netIncomeValue: 260,
+    margin: "17.3%",
+    marginValue: 17.3,
+    revenueGrowth: "-3.2%",
+    revenueGrowthValue: -3.2,
+    growthStatus: "negative",
+    status: "Pending",
+    statusVariant: "warning",
+  },
+  {
+    company: "HDFC Bank",
+    revenue: "₹3.1T",
+    revenueValue: 3.1,
+    netIncome: "₹640B",
+    netIncomeValue: 640,
+    margin: "20.6%",
+    marginValue: 20.6,
+    revenueGrowth: "+10.1%",
+    revenueGrowthValue: 10.1,
+    growthStatus: "positive",
+    status: "Processing",
+    statusVariant: "info",
   },
 ]
 
@@ -1002,6 +1076,85 @@ export default function DesignSystemPage() {
                   comparisonPeriod="vs FY 2025"
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Data Table
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Financial Data</h3>
+              <p className="text-xs text-text-muted mb-4">Sample QA data. Tap sortable headers on mobile or use keyboard focus + Enter.</p>
+              <DataTable
+                columns={[
+                  { id: "company", header: "Company", align: "left" },
+                  {
+                    id: "revenue",
+                    header: "Revenue",
+                    align: "right",
+                    numeric: true,
+                    sortable: true,
+                    sortCompare: (a: CompanyRow, b: CompanyRow) => a.revenueValue - b.revenueValue,
+                    render: (row) => <CurrencyCell value={row.revenue} />,
+                  },
+                  {
+                    id: "netIncome",
+                    header: "Net Income",
+                    align: "right",
+                    numeric: true,
+                    sortable: true,
+                    sortCompare: (a: CompanyRow, b: CompanyRow) => a.netIncomeValue - b.netIncomeValue,
+                    render: (row) => <CurrencyCell value={row.netIncome} />,
+                  },
+                  {
+                    id: "margin",
+                    header: "Margin",
+                    align: "right",
+                    numeric: true,
+                    render: (row) => <PercentageCell value={row.margin} />,
+                  },
+                  {
+                    id: "revenueGrowth",
+                    header: "Revenue Growth",
+                    align: "right",
+                    numeric: true,
+                    sortable: true,
+                    sortCompare: (a: CompanyRow, b: CompanyRow) => a.revenueGrowthValue - b.revenueGrowthValue,
+                    render: (row) => <TrendCell value={row.revenueGrowth} status={row.growthStatus} />,
+                  },
+                  {
+                    id: "status",
+                    header: "Status",
+                    align: "center",
+                    render: (row) => <StatusCell status={row.status} variant={row.statusVariant} />,
+                  },
+                ]}
+                rows={companyRows}
+                caption="Company financial overview"
+              />
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Empty State</h3>
+              <DataTable
+                columns={[
+                  { id: "company", header: "Company", align: "left" },
+                  { id: "revenue", header: "Revenue", align: "right", numeric: true },
+                  { id: "status", header: "Status", align: "center" },
+                ]}
+                rows={[]}
+                caption="No data example"
+                emptyState="No company data available."
+              />
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Responsive & Themes</h3>
+              <p className="text-xs text-text-muted mb-2">Resize viewport to verify behavior at 375px mobile, 768px tablet, and desktop. The table scrolls horizontally inside its container without page-level overflow. Sortable headers remain touch usable.</p>
+              <p className="text-xs text-text-muted">Use the theme switcher to verify Light and Dark rendering. Values use existing tokens; no hardcoded colors are introduced.</p>
             </div>
           </div>
         </section>
