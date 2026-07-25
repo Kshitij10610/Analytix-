@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Button, IconButton, Badge, Input, Textarea, Select } from "@/components/primitives"
 
 interface Swatch {
   token: string
@@ -621,21 +622,19 @@ export default function DesignSystemPage() {
           <div className="flex items-center gap-1 rounded-lg border border-border p-1 bg-surface">
             <button
               onClick={() => setTheme("light")}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                theme === "light"
-                  ? "bg-background text-text-primary shadow-sm"
-                  : "text-text-muted hover:text-text-secondary"
-              }`}
+              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${theme === "light"
+                ? "bg-background text-text-primary shadow-sm"
+                : "text-text-muted hover:text-text-secondary"
+                }`}
             >
               Light
             </button>
             <button
               onClick={() => setTheme("dark")}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                theme === "dark"
-                  ? "bg-background text-text-primary shadow-sm"
-                  : "text-text-muted hover:text-text-secondary"
-              }`}
+              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${theme === "dark"
+                ? "bg-background text-text-primary shadow-sm"
+                : "text-text-muted hover:text-text-secondary"
+                }`}
             >
               Dark
             </button>
@@ -655,7 +654,427 @@ export default function DesignSystemPage() {
               ))}
             </div>
           </section>
-        ))}
+        ))} 
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Select
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Real-World Examples</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Select
+                  label="Reporting Period"
+                  placeholder="Select reporting period"
+                  options={[
+                    { value: "q1-2026", label: "Q1 2026" },
+                    { value: "q4-2025", label: "Q4 2025" },
+                    { value: "fy-2025", label: "FY 2025" },
+                    { value: "fy-2024", label: "FY 2024" },
+                  ]}
+                  helperText="Choose the fiscal period for analysis"
+                />
+                <Select
+                  label="Currency"
+                  placeholder="Select currency"
+                  options={[
+                    { value: "inr", label: "INR - Indian Rupee" },
+                    { value: "usd", label: "USD - US Dollar" },
+                    { value: "eur", label: "EUR - Euro" },
+                    { value: "gbp", label: "GBP - British Pound" },
+                  ]}
+                  helperText="Currency for financial metrics"
+                />
+                <Select
+                  label="Industry"
+                  placeholder="Select industry"
+                  options={[
+                    { value: "it", label: "Information Technology" },
+                    { value: "pharma", label: "Pharmaceuticals" },
+                    { value: "banking", label: "Banking & Financial Services" },
+                    { value: "energy", label: "Energy & Power" },
+                    { value: "auto", label: "Automobile" },
+                  ]}
+                />
+                <Select
+                  label="Analysis Type"
+                  placeholder="Select analysis type"
+                  options={[
+                    { value: "dcf", label: "DCF Valuation" },
+                    { value: "comparable", label: "Comparable Company Analysis" },
+                    { value: "precedent", label: "Precedent Transactions" },
+                    { value: "lbo", label: "Leveraged Buyout" },
+                  ]}
+                />
+                <Select
+                  label="Export Format"
+                  placeholder="Select export format"
+                  options={[
+                    { value: "pdf", label: "PDF Document" },
+                    { value: "xlsx", label: "Excel Spreadsheet" },
+                    { value: "pptx", label: "PowerPoint Presentation" },
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Sizes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Select
+                  size="sm"
+                  label="Small"
+                  placeholder="Select option"
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                  helperText="sm size"
+                />
+                <Select
+                  size="md"
+                  label="Medium"
+                  placeholder="Select option"
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                  helperText="md size"
+                />
+                <Select
+                  size="lg"
+                  label="Large"
+                  placeholder="Select option"
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                  helperText="lg size"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">States</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Select
+                  label="Default"
+                  placeholder="Select an option"
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                  helperText="This is helper text"
+                />
+                <Select
+                  label="Required"
+                  placeholder="Select an option"
+                  required
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                  helperText="This field is mandatory"
+                />
+                <Select
+                  label="Error"
+                  variant="error"
+                  placeholder="Select an option"
+                  errorMessage="Please select a valid option"
+                  required
+                  options={[
+                    { value: "1", label: "Option 1" },
+                    { value: "2", label: "Option 2" },
+                  ]}
+                />
+                <Select
+                  label="Disabled"
+                  placeholder="Cannot select"
+                  disabled
+                  options={[
+                    { value: "1", label: "Option 1" },
+                  ]}
+                  helperText="This field is disabled"
+                />
+                <Select
+                  label="Disabled Option"
+                  placeholder="Select an option"
+                  options={[
+                    { value: "active", label: "Active Plan" },
+                    { value: "archived", label: "Archived Plan", disabled: true },
+                    { value: "draft", label: "Draft Plan" },
+                  ]}
+                  helperText="Archived option is not selectable"
+                />
+                <Select
+                  label="Default Value"
+                  placeholder="Select an option"
+                  defaultValue="usd"
+                  options={[
+                    { value: "inr", label: "INR" },
+                    { value: "usd", label: "USD" },
+                    { value: "eur", label: "EUR" },
+                  ]}
+                  helperText="Pre-selected default value"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Responsive QA</h3>
+              <p className="text-xs text-text-muted mb-4">Resize viewport to verify behavior at ~375px mobile, ~768px tablet, and ~1440px desktop. No horizontal overflow should occur. Native Android/iOS select behavior is preserved.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Select
+                  label="Reporting Period"
+                  placeholder="Select reporting period"
+                  options={[
+                    { value: "q1-2026", label: "Q1 2026" },
+                    { value: "q4-2025", label: "Q4 2025" },
+                    { value: "fy-2025", label: "FY 2025" },
+                    { value: "fy-2024", label: "FY 2024" },
+                  ]}
+                  helperText="Native select behavior on all devices"
+                />
+                <Select
+                  label="Currency"
+                  placeholder="Select currency"
+                  size="lg"
+                  options={[
+                    { value: "inr", label: "INR - Indian Rupee" },
+                    { value: "usd", label: "USD - US Dollar" },
+                    { value: "eur", label: "EUR - Euro" },
+                    { value: "gbp", label: "GBP - British Pound" },
+                  ]}
+                  helperText="Larger touch target on mobile"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Accessibility QA</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider">Label & Keyboard</h4>
+                  <Select
+                    label="Tab to focus"
+                    placeholder="Select an option"
+                    options={[
+                      { value: "1", label: "Option 1" },
+                      { value: "2", label: "Option 2" },
+                    ]}
+                    helperText="Tab to see focus-visible outline"
+                  />
+                  <p className="text-xs text-text-muted">Label is programmatically associated via htmlFor. Arrow keys navigate options. Enter/Space opens the select. Escape closes it.</p>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider">Error & Helper Association</h4>
+                  <Select
+                    label="Required Field"
+                    placeholder="Select an option"
+                    required
+                    options={[
+                      { value: "1", label: "Option 1" },
+                      { value: "2", label: "Option 2" },
+                    ]}
+                    helperText="aria-required is set"
+                  />
+                  <Select
+                    label="Error Field"
+                    variant="error"
+                    placeholder="Select an option"
+                    errorMessage="This field is required"
+                    required
+                    options={[
+                      { value: "1", label: "Option 1" },
+                      { value: "2", label: "Option 2" },
+                    ]}
+                  />
+                  <p className="text-xs text-text-muted">Error text is linked via aria-describedby. Required state uses aria-required.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Theme QA</h3>
+              <p className="text-sm text-text-muted mb-4">Select renders correctly in both Light and Dark themes. Use the theme switcher at the top of the page.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider">Light Theme</h4>
+                  <Select
+                    label="Industry"
+                    placeholder="Select industry"
+                    options={[
+                      { value: "it", label: "Information Technology" },
+                      { value: "pharma", label: "Pharmaceuticals" },
+                    ]}
+                    helperText="Light theme rendering"
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider">Dark Theme</h4>
+                  <Select
+                    label="Industry"
+                    placeholder="Select industry"
+                    options={[
+                      { value: "it", label: "Information Technology" },
+                      { value: "pharma", label: "Pharmaceuticals" },
+                    ]}
+                    helperText="Dark theme rendering"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Input
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Real-World Examples</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input label="Company" placeholder="Reliance Industries" helperText="Enter the company legal name" />
+                <Input label="Analyst Email" type="email" placeholder="analyst@example.com" helperText="Used for report delivery" />
+                <Input label="Password" type="password" placeholder="••••••••" helperText="Min 8 characters" />
+                <Input label="Revenue Growth" type="number" placeholder="12.4" helperText="Percentage growth year-over-year" />
+                <div className="md:col-span-2">
+                  <Input type="search" placeholder="Search companies, reports, or filings..." leadingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>} />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">States</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input label="Default" placeholder="Enter value" helperText="This is helper text" />
+                <Input label="Required" placeholder="Required field" required helperText="This field is mandatory" />
+                <Input label="Error" variant="error" placeholder="Enter value" errorMessage="This field is required" required />
+                <Input label="Disabled" placeholder="Enter value" disabled helperText="This field is disabled" />
+                <Input label="Read Only" placeholder="Reliance Industries" readOnly helperText="Source: company filings" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Sizes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Input size="sm" label="Small" placeholder="Small input" helperText="sm size" />
+                <Input size="md" label="Medium" placeholder="Medium input" helperText="md size" />
+                <Input size="lg" label="Large" placeholder="Large input" helperText="lg size" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Leading & Trailing Elements</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input size="sm" label="Leading (sm)" placeholder="Small" leadingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>} />
+                <Input size="md" label="Trailing (md)" placeholder="Medium" trailingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>} />
+                <Input size="lg" label="Leading + Trailing (lg)" placeholder="Large with both" leadingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>} trailingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>} />
+                <Input type="number" label="Financial" placeholder="0.00" leadingElement={<span className="text-xs font-medium text-text-muted">₹</span>} helperText="Indian Rupee" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Error States with Icons</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input label="Invalid Email" type="email" variant="error" placeholder="invalid@" errorMessage="Please enter a valid email address" leadingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>} />
+                <Input label="Invalid Number" type="number" variant="error" placeholder="-5" errorMessage="Revenue growth cannot be negative" trailingElement={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Textarea
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Variants & States</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Textarea label="Default" placeholder="Enter your analysis..." helperText="Be as detailed as possible" rows={3} />
+                <Textarea label="Required" placeholder="Enter your analysis..." required helperText="This field is mandatory" rows={3} />
+                <Textarea label="Error" variant="error" placeholder="Enter your analysis..." errorMessage="Analysis is too short" required rows={3} />
+                <Textarea label="Disabled" placeholder="Analysis locked" disabled helperText="Contact admin to edit" rows={3} />
+                <Textarea label="Read Only" placeholder="Analyze revenue growth, operating margins, cash flow trends, and major risks." readOnly helperText="Locked version" rows={3} />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Sizes & Character Count</h3>
+              <div className="grid grid-cols-1 gap-6">
+                <Textarea size="sm" placeholder="Brief summary (sm)" rows={2} maxCharacterCount={100} characterCount={45} />
+                <Textarea size="md" placeholder="Detailed analysis (md)" rows={4} maxCharacterCount={500} characterCount={234} />
+                <Textarea size="lg" placeholder="Comprehensive report (lg)" rows={6} maxCharacterCount={1000} characterCount={678} />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Financial Analysis Example</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Textarea label="Analyst Notes" placeholder="Analyze revenue growth, operating margins, cash flow trends, and major risks." helperText="Minimum 100 characters" rows={5} maxCharacterCount={1000} characterCount={142} />
+                <Textarea label="Risk Assessment" placeholder="Identify key risks, mitigation strategies, and probability-weighted outcomes." helperText="Focus on material risks" variant="error" errorMessage="Risk assessment is incomplete" rows={5} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Accessibility QA
+          </h2>
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-text-secondary">Label Association</h3>
+                <Input label="Tab to focus" placeholder="Click label to focus" helperText="Label is programmatically associated via htmlFor" />
+                <Textarea label="Notes" placeholder="Tab to focus this textarea" helperText="Click label to focus" rows={2} />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-textSecondary">Screen Reader Attributes</h3>
+                <Input label="Required Field" placeholder="Required input" required helperText="aria-required is set" />
+                <Input label="Error Field" variant="error" placeholder="Invalid input" errorMessage="aria-invalid and aria-describedby are set" required />
+                <Textarea label="Accessible Textarea" placeholder="Accessible" helperText="aria-describedby links helper text" rows={2} />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-text-secondary">Disabled & Read-Only</h3>
+                <Input label="Disabled" placeholder="Cannot edit" disabled helperText="Semantically disabled" />
+                <Input label="Read Only" placeholder="Cannot modify" readOnly helperText="Semantically read-only" />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-text-secondary">Focus Visible</h3>
+                <Input label="Focus me" placeholder="Tab to see focus ring" helperText="focus-visible uses --focus-ring-* tokens" />
+                <Textarea label="Focus textarea" placeholder="Tab to see focus ring" helperText="focus-visible uses --focus-ring-* tokens" rows={2} />
+              </div>
+            </div>
+            <p className="text-xs text-text-muted mt-4">
+              Keyboard navigation: Tab through elements to verify focus-visible outlines. Screen readers will announce labels, required state, error messages, and helper text via aria-describedby.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Theme QA
+          </h2>
+          <p className="text-sm text-text-muted mb-6">Input and Textarea components render correctly in both Light and Dark themes. Use the theme switcher at the top of the page to verify.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-text-secondary">Light Theme Examples</h3>
+              <Input label="Company" placeholder="Reliance Industries" helperText="Light theme" />
+              <Textarea label="Analysis" placeholder="Type your analysis..." rows={2} helperText="Light theme" />
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-text-secondary">Dark Theme Examples</h3>
+              <Input label="Company" placeholder="Reliance Industries" helperText="Dark theme" />
+              <Textarea label="Analysis" placeholder="Type your analysis..." rows={2} helperText="Dark theme" />
+            </div>
+          </div>
+        </section>
 
         <section>
           <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
@@ -673,6 +1092,86 @@ export default function DesignSystemPage() {
             Layout & Foundations
           </h2>
           <LayoutSection />
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Button
+          </h2>
+          <div className="space-y-6">
+            {(["primary", "secondary", "outline", "ghost", "destructive"] as const).map((variant) => (
+              <div key={variant}>
+                <h3 className="text-sm font-semibold text-text-secondary mb-3 capitalize">{variant}</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant={variant} size="sm">Small</Button>
+                  <Button variant={variant} size="md">Medium</Button>
+                  <Button variant={variant} size="lg">Large</Button>
+                  <Button variant={variant} size="md" disabled>Disabled</Button>
+                  <Button variant={variant} size="md" loading>Loading</Button>
+                  <Button variant={variant} size="md" leadingIcon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>}>Leading</Button>
+                  <Button variant={variant} size="md" trailingIcon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>}>Trailing</Button>
+                  <Button variant={variant} size="md" fullWidth>Full Width</Button>
+                </div>
+                <div className="mt-2 text-xs text-text-muted">Run Analysis · Generate Report · Export · Compare · Delete Report</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Icon Button
+          </h2>
+          <div className="space-y-6">
+            {(["primary", "secondary", "ghost", "destructive"] as const).map((variant) => (
+              <div key={variant}>
+                <h3 className="text-sm font-semibold text-text-secondary mb-3 capitalize">{variant}</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <IconButton variant={variant} size="sm" ariaLabel="Play" icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>} />
+                  <IconButton variant={variant} size="md" ariaLabel="Play" icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>} />
+                  <IconButton variant={variant} size="lg" ariaLabel="Play" icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>} />
+                  <IconButton variant={variant} size="md" disabled ariaLabel="Play" icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>} />
+                  <IconButton variant={variant} size="md" loading ariaLabel="Play" icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3" /></svg>} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Badge
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-3">Variants</h3>
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge variant="neutral">Draft</Badge>
+                <Badge variant="primary">AI Analysis</Badge>
+                <Badge variant="success">Completed</Badge>
+                <Badge variant="warning">Pending</Badge>
+                <Badge variant="error">Failed</Badge>
+                <Badge variant="info">Processing</Badge>
+                <Badge variant="positive">+12.4%</Badge>
+                <Badge variant="negative">-3.2%</Badge>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-3">Sizes</h3>
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge variant="primary" size="sm">Small</Badge>
+                <Badge variant="primary" size="md">Medium</Badge>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-3">With Leading Icon</h3>
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge variant="success" leadingIcon={<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>}>Completed</Badge>
+                <Badge variant="error" leadingIcon={<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>}>Failed</Badge>
+                <Badge variant="warning" leadingIcon={<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>}>Pending</Badge>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
