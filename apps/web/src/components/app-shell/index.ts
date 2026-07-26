@@ -1,4 +1,5 @@
 export { AppShell, type NavItem } from "./app-shell"
+export { AppShellNav } from "./app-shell-nav"
 export { Sidebar } from "./sidebar"
 export { Header } from "./header"
 export { MobileNav } from "./mobile-nav"

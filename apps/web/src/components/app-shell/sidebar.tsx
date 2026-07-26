@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 
 interface NavItem {
   id: string
@@ -27,12 +28,13 @@ export function Sidebar({ items, activePath, onNavigate, collapsed = false }: Si
       <nav className={["flex-1", collapsed ? "py-spacing-4" : "py-spacing-4"].join(" ")} aria-label="Main">
         <ul className={["space-y-spacing-1", collapsed ? "px-spacing-2" : "px-spacing-3"].join(" ")}>
           {items.map((item) => {
-            const isActive = activePath === item.id
+            const isActive = activePath === item.id || activePath === item.href
+            const href = item.href || item.id
             return (
               <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => onNavigate?.(item.id)}
+                <Link
+                  href={href}
+                  onClick={onNavigate ? () => onNavigate(item.id) : undefined}
                   className={[
                     "w-full flex items-center gap-spacing-3 px-spacing-3 py-spacing-2 rounded-md text-left transition-colors",
                     "min-h-[44px]",
@@ -49,7 +51,7 @@ export function Sidebar({ items, activePath, onNavigate, collapsed = false }: Si
                     {item.icon}
                   </span>
                   {!collapsed && <span className="text-body-sm font-medium">{item.label}</span>}
-                </button>
+                </Link>
               </li>
             )
           })}
