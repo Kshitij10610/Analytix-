@@ -11,11 +11,11 @@ interface NavItem {
 interface SidebarProps {
   items: NavItem[]
   activePath?: string
-  onNavigate?: (id: string) => void
+  onSelect?: (id: string) => void
   collapsed?: boolean
 }
 
-export function Sidebar({ items, activePath, onNavigate, collapsed = false }: SidebarProps) {
+export function Sidebar({ items, activePath, onSelect, collapsed = false }: SidebarProps) {
   return (
     <aside className={["h-full border-r border-border bg-surface-sidebar flex flex-col", collapsed ? "w-16" : "w-64"].join(" ")}>
       <div className={["h-14 flex items-center border-b border-border-subtle", collapsed ? "px-spacing-3 justify-center" : "px-spacing-4"].join(" ")}>
@@ -34,7 +34,7 @@ export function Sidebar({ items, activePath, onNavigate, collapsed = false }: Si
               <li key={item.id}>
                 <Link
                   href={href}
-                  onClick={onNavigate ? () => onNavigate(item.id) : undefined}
+                  onClick={onSelect ? () => onSelect(item.id) : undefined}
                   className={[
                     "w-full flex items-center gap-spacing-3 px-spacing-3 py-spacing-2 rounded-md text-left transition-colors",
                     "min-h-[44px]",

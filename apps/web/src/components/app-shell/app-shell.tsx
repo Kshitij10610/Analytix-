@@ -16,7 +16,7 @@ export interface NavItem {
 interface AppShellProps {
   children: React.ReactNode
   navItems: NavItem[]
-  onNavigate?: (id: string) => void
+  onSelect?: (id: string) => void
   headerTitle?: string
   headerRightAction?: React.ReactNode
 }
@@ -24,7 +24,7 @@ interface AppShellProps {
 export function AppShell({
   children,
   navItems,
-  onNavigate,
+  onSelect,
   headerTitle,
   headerRightAction,
 }: AppShellProps) {
@@ -36,12 +36,12 @@ export function AppShell({
       <div className="flex flex-1">
         {/* Desktop sidebar */}
         <div className="hidden lg:block">
-          <Sidebar items={navItems} activePath={pathname} onNavigate={onNavigate} />
+          <Sidebar items={navItems} activePath={pathname} />
         </div>
 
         {/* Tablet sidebar */}
         <div className="hidden md:block lg:hidden">
-          <Sidebar items={navItems} activePath={pathname} onNavigate={onNavigate} collapsed />
+          <Sidebar items={navItems} activePath={pathname} collapsed />
         </div>
 
         {/* Main content area */}
@@ -57,7 +57,7 @@ export function AppShell({
 
       {/* Mobile bottom nav */}
       <div className="md:hidden">
-        <MobileNav items={navItems} activePath={pathname} onNavigate={onNavigate} />
+        <MobileNav items={navItems} activePath={pathname} onSelect={onSelect} />
       </div>
 
       {/* Mobile drawer overlay */}
@@ -69,7 +69,7 @@ export function AppShell({
             onClick={() => setMobileOpen(false)}
           />
           <aside className="absolute left-0 top-0 bottom-0 w-64 bg-surface-sidebar border-r border-border shadow-lg">
-            <Sidebar items={navItems} activePath={pathname} onNavigate={(id) => { onNavigate?.(id); setMobileOpen(false) }} />
+            <Sidebar items={navItems} activePath={pathname} onSelect={(id) => { onSelect?.(id); setMobileOpen(false) }} />
           </aside>
         </div>
       )}

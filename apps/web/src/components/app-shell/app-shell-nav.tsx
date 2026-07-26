@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { usePathname, useRouter } from "next/navigation"
 import { AppShell } from "@/components/app-shell"
 import type { NavItem } from "@/components/app-shell"
 
@@ -68,16 +67,5 @@ const navItems: NavItem[] = [
 ]
 
 export function AppShellNav({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
-  const pathname = usePathname()
-
-  const onNavigate = (id: string) => {
-    const item = navItems.find((n) => n.id === id)
-    const href = item?.href || item?.id
-    if (href && href !== pathname) {
-      router.push(href)
-    }
-  }
-
-  return <AppShell navItems={navItems} onNavigate={onNavigate}>{children}</AppShell>
+  return <AppShell navItems={navItems}>{children}</AppShell>
 }
