@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button, IconButton, Badge, Input, Textarea, Select, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, TrendIndicator, FinancialMetric, MetricCard, DataTable, CurrencyCell, PercentageCell, TrendCell, StatusCell } from "@/components/primitives"
+import { PageHeader, PageContent, PageSection, DashboardSection, DashboardGrid, DashboardRow, DashboardColumn, DashboardPlaceholder } from "@/components/app-layout"
 
 interface Swatch {
   token: string
@@ -1595,6 +1596,211 @@ export default function DesignSystemPage() {
             Layout & Foundations
           </h2>
           <LayoutSection />
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Page Header
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Basic Header</h3>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <PageHeader
+                  title="Revenue Analysis"
+                  description="FY 2026 financial overview for Reliance Industries"
+                  breadcrumb={[
+                    { label: "Home", href: "#" },
+                    { label: "Dashboard", href: "#" },
+                    { label: "Revenue Analysis" },
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">With Actions</h3>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <PageHeader
+                  title="Company Details"
+                  description="Reliance Industries Limited"
+                  primaryAction={<Button size="md">Run Analysis</Button>}
+                  secondaryAction={<Button variant="outline" size="md">Export</Button>}
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Long Title</h3>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <PageHeader
+                  title="Reliance Industries Limited FY 2026 Annual Financial Performance and Operating Margin Analysis"
+                  description="Comprehensive review of revenue, profitability, cash flow, and major risk factors"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Page Content Layout
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Content Widths</h3>
+              <div className="space-y-6">
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <PageContent maxWidth="content">
+                    <PageSection title="Content Width (1280px)">
+                      <p className="text-body text-text-secondary">Standard dashboard content width. Suitable for most application screens.</p>
+                    </PageSection>
+                  </PageContent>
+                </div>
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <PageContent maxWidth="dashboard">
+                    <PageSection title="Dashboard Width (1440px)">
+                      <p className="text-body text-text-secondary">Wider layout for analytics dashboards with multiple charts and tables.</p>
+                    </PageSection>
+                  </PageContent>
+                </div>
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <PageContent maxWidth="reading">
+                    <PageSection title="Reading Width (768px)">
+                      <p className="text-body text-text-secondary">Narrower width for reports and long-form content.</p>
+                    </PageSection>
+                  </PageContent>
+                </div>
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <PageContent maxWidth="full">
+                    <PageSection title="Full Width" fullWidth>
+                      <div className="h-32 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                        <span className="text-body-sm text-text-muted">Full-width content area for charts and tables</span>
+                      </div>
+                    </PageSection>
+                  </PageContent>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Sections</h3>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <PageContent maxWidth="content">
+                  <PageSection title="Financial Metrics" description="Key performance indicators">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="h-24 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                        <span className="text-body-sm text-text-muted">Metric Card 1</span>
+                      </div>
+                      <div className="h-24 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                        <span className="text-body-sm text-text-muted">Metric Card 2</span>
+                      </div>
+                      <div className="h-24 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                        <span className="text-body-sm text-text-muted">Metric Card 3</span>
+                      </div>
+                    </div>
+                  </PageSection>
+                  <PageSection title="Revenue Trend" description="Historical performance">
+                    <div className="h-48 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                      <span className="text-body-sm text-text-muted">Chart placeholder</span>
+                    </div>
+                  </PageSection>
+                </PageContent>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Responsive & Mobile QA</h3>
+              <p className="text-xs text-text-muted mb-4">Resize viewport to verify behavior at ~375px mobile, ~768px tablet, and desktop. Header actions stack on mobile. Long titles wrap safely. No horizontal page overflow.</p>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <PageHeader
+                  title="Reliance Industries Limited FY 2026 Annual Financial Performance and Operating Margin Analysis"
+                  description="Comprehensive review of revenue, profitability, cash flow, and major risk factors for the fiscal year ended March 31, 2026"
+                  primaryAction={<Button size="md">Run Analysis</Button>}
+                  secondaryAction={<Button variant="outline" size="md">Export Report</Button>}
+                />
+                <PageContent maxWidth="content">
+                  <PageSection title="Data Table" fullWidth>
+                    <div className="h-32 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                      <span className="text-body-sm text-text-muted">Full-width table placeholder</span>
+                    </div>
+                  </PageSection>
+                </PageContent>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-text-heading mb-6 pb-2 border-b border-border">
+            Dashboard Layout
+          </h2>
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Grid Structure</h3>
+              <p className="text-xs text-text-muted mb-4">Dashboard sections use responsive grids. Resize viewport to verify 1 column mobile, 2 column tablet, 3/4 column desktop.</p>
+              <DashboardSection>
+                <DashboardGrid columns={4}>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Metric 1</CardTitle></CardHeader><CardContent><p className="text-body-sm text-text-secondary">Content area</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Metric 2</CardTitle></CardHeader><CardContent><p className="text-body-sm text-text-secondary">Content area</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Metric 3</CardTitle></CardHeader><CardContent><p className="text-body-sm text-text-secondary">Content area</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Metric 4</CardTitle></CardHeader><CardContent><p className="text-body-sm text-text-secondary">Content area</p></CardContent></Card>
+                </DashboardGrid>
+              </DashboardSection>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Row / Column Layout</h3>
+              <p className="text-xs text-text-muted mb-4">Desktop uses 3-column row layout with optional span. Tablet and mobile stack naturally.</p>
+              <DashboardSection>
+                <DashboardRow>
+                  <DashboardColumn span={2}>
+                    <Card padding="md">
+                      <CardHeader><CardTitle as="h4">Main Content</CardTitle><CardDescription>Primary chart or table area</CardDescription></CardHeader>
+                      <CardContent>
+                        <div className="h-48 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                          <span className="text-body-sm text-text-muted">Main chart area</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </DashboardColumn>
+                  <DashboardColumn span={1}>
+                    <Card padding="md">
+                      <CardHeader><CardTitle as="h4">Secondary</CardTitle><CardDescription>Supporting content</CardDescription></CardHeader>
+                      <CardContent>
+                        <div className="h-48 bg-surface-elevated border border-border rounded flex items-center justify-center">
+                          <span className="text-body-sm text-text-muted">Secondary area</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </DashboardColumn>
+                </DashboardRow>
+              </DashboardSection>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Placeholder States</h3>
+              <p className="text-xs text-text-muted mb-4">Reusable presentational states for dashboard sections. Not connected to APIs yet.</p>
+              <DashboardGrid columns={3}>
+                <DashboardPlaceholder state="loading" title="Revenue" description="Loading data..." />
+                <DashboardPlaceholder state="empty" title="Reports" description="No data" message="No reports available for this period." />
+                <DashboardPlaceholder state="error" title="Financials" description="Data load failed" message="Unable to load chart data." />
+              </DashboardGrid>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 uppercase tracking-wider">Responsive QA</h3>
+              <p className="text-xs text-text-muted mb-4">Verify at ~375px mobile, ~768px tablet, and desktop. No page-level horizontal overflow. Cards fit container.</p>
+              <DashboardSection>
+                <DashboardGrid columns={4}>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Revenue</CardTitle></CardHeader><CardContent><p className="text-h3 font-semibold tabular-nums">₹1.24T</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Net Income</CardTitle></CardHeader><CardContent><p className="text-h3 font-semibold tabular-nums">₹24,382.57 Cr</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Margin</CardTitle></CardHeader><CardContent><p className="text-h3 font-semibold tabular-nums">18.75%</p></CardContent></Card>
+                  <Card padding="md"><CardHeader><CardTitle as="h4">Growth</CardTitle></CardHeader><CardContent><p className="text-h3 font-semibold tabular-nums">+12.4%</p></CardContent></Card>
+                </DashboardGrid>
+              </DashboardSection>
+            </div>
+          </div>
         </section>
 
         <section>
