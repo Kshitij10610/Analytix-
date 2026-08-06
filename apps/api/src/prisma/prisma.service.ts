@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '../generated/prisma/client';
+import { PrismaClient } from '../generated/client';
 
 @Injectable()
 export class PrismaService implements OnModuleInit, OnModuleDestroy {
@@ -24,3 +24,5 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
     await this.prisma.$disconnect();
   }
 }
+
+export { Decimal } from '../generated/internal/prismaNamespace';

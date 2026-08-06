@@ -1,0 +1,26 @@
+info:
+  name: POST Create Line Item
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/financial-statements/cmsbndq98000at8g1yd6u86km/line-items"
+  body:
+    type: json
+    data: |-
+      {
+        "metricCode": "TOTAL_ASSETS",
+        "value": "5000000.000000",
+        "labelOverride": "Total Assets",
+        "displayOrder": 1
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NjI4MCwiZXhwIjoxNzg1NjY3MTgwfQ.x7fa1thtGK7TbMzOEtAbXWusy_gYzcnrxPCCcX9yWM4
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,17 @@
+info:
+  name: POST Parse Import
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/cmsbr0k1t0004usg11j2m3pqr/parse"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY4NzU0OCwiZXhwIjoxNzg1Njg4NDQ4fQ.LgQ4xjRmWbv0DGXiMfh5bDP-FT8rdKLBRPrdy509tD4
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

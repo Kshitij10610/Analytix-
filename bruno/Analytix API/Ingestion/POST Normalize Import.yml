@@ -1,0 +1,17 @@
+info:
+  name: POST Normalize Import
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/cmsbr0k1t0004usg11j2m3pqr/normalize"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY5MzI2MywiZXhwIjoxNzg1Njk0MTYzfQ.gwpjbjEWnE7KTEoFp5-Wrorausug6kEgcVDRN6L2w_U
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

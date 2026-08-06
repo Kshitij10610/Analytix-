@@ -1,0 +1,36 @@
+info:
+  name: PUT Replace Line Items
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/financial-statements/cmsbndq98000at8g1yd6u86km/line-items"
+  body:
+    type: json
+    data: |-
+      {
+        "lineItems": [
+          {
+            "metricCode": "TOTAL_ASSETS",
+            "value": "10000000.000000"
+          },
+          {
+            "metricCode": "TOTAL_LIABILITIES",
+            "value": "4000000.000000"
+          },
+          {
+            "metricCode": "TOTAL_EQUITY",
+            "value": "6000000.000000"
+          }
+        ]
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NzM0MCwiZXhwIjoxNzg1NjY4MjQwfQ.FJ_WnDynB0qJ3LGLlj7C9tv3ELgWkjFTHvfRj1nIFUg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

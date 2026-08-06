@@ -1,0 +1,25 @@
+info:
+  name: POST Create Company
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Analytix Test Company",
+        "industry": "Finance",
+        "website": "https://analytix.ai"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2MzI5MywiZXhwIjoxNzg1NjY0MTkzfQ.vn5hx9PQFWbd-T6RC7fZgEpr4G7zFxZYJiOK419MVAw
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

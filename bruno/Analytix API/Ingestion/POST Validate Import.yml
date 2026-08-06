@@ -1,0 +1,17 @@
+info:
+  name: POST Validate Import
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/cmsbr0k1t0004usg11j2m3pqr/validate"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY4ODUxOCwiZXhwIjoxNzg1Njg5NDE4fQ.-x6wl5S8t94HR7jn1UxSKhWGuBO9taTAVij3KTP-n4Q
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,15 @@
+info:
+  name: GET Statement Line Items
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/financial-statements/24d256d1-d0df-4617-8253-f0b31e6ef4ab/line-items"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

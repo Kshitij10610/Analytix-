@@ -1,0 +1,41 @@
+info:
+  name: POST Create Financial Statement
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/financial-statements"
+  body:
+    type: json
+    data: |-
+      {
+        "type": "INCOME_STATEMENT",
+        "periodStart": "2024-01-01",
+        "periodEnd": "2024-12-31",
+        "fiscalYear": 2024,
+        "periodType": "ANNUAL",
+        "currency": "USD",
+        "scale": "ONES",
+        "sourceType": "MANUAL",
+        "sourceReference": "Annual Report 2024",
+        "lineItems": [
+          {
+            "metricCode": "REVENUE",
+            "value": "1500000.000000"
+          },
+          {
+            "metricCode": "NET_INCOME",
+            "value": "250000.500000"
+          }
+        ]
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NTMxMywiZXhwIjoxNzg1NjY2MjEzfQ.xLIVviQBtTwpIqP0Q8FqzvJZ-sRaTUqKI3quSuofasg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

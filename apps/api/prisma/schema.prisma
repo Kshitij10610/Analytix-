@@ -1,66 +1,72 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-enum Role {
-  ADMIN
-  ANALYST
-  USER
-}
-
 model User {
-  id             String    @id @default(cuid())
-  email          String    @unique
-  password       String
-  name           String?
-  role           Role      @default(USER)
-  lastLoginAt    DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-
-  companies      Company[]
-  refreshTokens  RefreshToken[]
+  id                   String               @id @default(cuid())
+  email                String               @unique
+  name                 String?
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+  lastLoginAt          DateTime?
+  password             String
+  role                 Role                 @default(USER)
+  companies            Company[]
+  company_members      company_members[]
+  financial_statements FinancialStatement[]
+  refreshTokens        RefreshToken[]
 
   @@map("users")
 }
 
 model Company {
-  id          String   @id @default(cuid())
-  name        String
-  industry    String?
-  website     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  users           User[]
+  id                  String               @id @default(cuid())
+  name                String
+  industry            String?
+  website             String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  ownerId             String?
+  users               User?                @relation(fields: [ownerId], references: [id], onUpdate: NoAction)
+  company_members     company_members?
   financialStatements FinancialStatement[]
+  import_jobs         import_jobs[]
+  source_files        source_files[]
 
   @@map("companies")
 }
 
-enum FinancialStatementType {
-  INCOME_STATEMENT
-  BALANCE_SHEET
-  CASH_FLOW
-}
-
 model FinancialStatement {
-  id          String                 @id @default(cuid())
-  companyId   String
-  type        FinancialStatementType
-  periodStart DateTime
-  periodEnd   DateTime
-  createdAt   DateTime               @default(now())
-  updatedAt   DateTime               @updatedAt
+  id                   String                   @id @default(cuid())
+  companyId            String
+  type                 FinancialStatementType
+  periodStart          DateTime
+  periodEnd            DateTime
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  fiscalYear           Int                      @default(2024)
+  fiscalQuarter        Int?
+  periodType           FinancialPeriodType      @default(ANNUAL)
+  currency             String                   @default("USD")
+  scale                FinancialScale           @default(ONES)
+  sourceType           FinancialDataSourceType?
+  sourceReference      String?
+  importedAt           DateTime?
+  importedBy           String?
+  financial_line_items financial_line_items[]
+  company              Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  users                User?                    @relation(fields: [importedBy], references: [id])
 
-  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-  @@unique([companyId, type, periodStart, periodEnd])
+  @@unique([companyId, type, fiscalYear, periodType], map: "financial_statements_annual_unique", where: raw("((\"periodType\" = 'ANNUAL'::\"FinancialPeriodType\") AND (\"fiscalQuarter\" IS NULL))"))
+  @@unique([id, type])
+  @@unique([companyId, type, fiscalYear, fiscalQuarter, periodType], map: "financial_statements_quarterly_unique", where: raw("((\"periodType\" = 'QUARTERLY'::\"FinancialPeriodType\") AND (\"fiscalQuarter\" IS NOT NULL))"))
+  @@unique([companyId, type, periodStart, periodEnd, periodType], map: "financial_statements_ttm_unique", where: raw("((\"periodType\" = 'TTM'::\"FinancialPeriodType\") AND (\"fiscalQuarter\" IS NULL))"))
   @@map("financial_statements")
 }
 
@@ -72,10 +78,281 @@ model RefreshToken {
   createdAt    DateTime  @default(now())
   revokedAt    DateTime?
   replacedById String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([expiresAt])
   @@map("refresh_tokens")
+}
+
+model audit_events {
+  id              String            @id @default(cuid())
+  occurredAt      DateTime          @default(now()) @db.Timestamptz(6)
+  actorType       AuditActorType
+  actorUserId     String?
+  actorEmail      String?
+  actorGlobalRole String?
+  companyId       String?
+  action          AuditAction
+  resourceType    AuditResourceType
+  resourceId      String?
+  result          AuditResult
+  failureReason   String?
+  changes         Json?
+  metadata        Json?
+  requestId       String?
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+
+  @@index([action, occurredAt])
+  @@index([actorUserId, occurredAt])
+  @@index([companyId, occurredAt])
+  @@index([occurredAt])
+  @@index([resourceType, resourceId])
+}
+
+model company_members {
+  id        String            @id @default(dbgenerated("(gen_random_uuid())::text"))
+  userId    String
+  companyId String            @unique(map: "company_members_single_owner_unique", where: raw("(role = 'OWNER'::\"CompanyMemberRole\")"))
+  role      CompanyMemberRole @default(VIEWER)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @default(now())
+  companies Company           @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     User              @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([userId, companyId])
+  @@index([companyId])
+  @@index([userId])
+}
+
+model financial_line_items {
+  id                   String                 @id
+  financialStatementId String
+  metricDefinitionId   String
+  value                Decimal                @db.Decimal(30, 6)
+  labelOverride        String?
+  displayOrder         Int?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime
+  statementType        FinancialStatementType
+  metric_definitions   metric_definitions     @relation(fields: [metricDefinitionId, statementType], references: [id, statementType], onUpdate: Restrict, map: "financial_line_items_metric_fkey")
+  financial_statements FinancialStatement     @relation(fields: [financialStatementId, statementType], references: [id, type], onDelete: Cascade, map: "financial_line_items_statement_fkey")
+
+  @@unique([financialStatementId, metricDefinitionId], map: "financial_line_items_financialStatementId_metricDefinitionId_ke")
+  @@index([financialStatementId])
+  @@index([metricDefinitionId])
+}
+
+model import_jobs {
+  id                     String                   @id @default(cuid())
+  companyId              String
+  sourceFileId           String
+  statementType          FinancialStatementType?
+  status                 ImportJobStatus          @default(UPLOADED)
+  mapping                Json?
+  parseSummary           Json?
+  validationErrors       Json?
+  lastCommitError        Json?
+  committedStatementId   String?
+  createdBy              String
+  createdAt              DateTime                 @default(now()) @db.Timestamptz(6)
+  updatedAt              DateTime                 @default(now()) @db.Timestamptz(6)
+  completedAt            DateTime?                @db.Timestamptz(6)
+  periodStart            DateTime?                @db.Timestamptz(6)
+  periodEnd              DateTime?                @db.Timestamptz(6)
+  fiscalYear             Int?
+  periodType             FinancialPeriodType?
+  currency               String?                  @db.VarChar(100)
+  scale                  FinancialScale?
+  normalizedAt           DateTime?                @db.Timestamptz(6)
+  companies              Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  source_files           source_files             @relation(fields: [companyId, sourceFileId], references: [companyId, id], onUpdate: NoAction)
+  import_normalized_rows import_normalized_rows[]
+  import_raw_rows        import_raw_rows[]
+
+  @@unique([companyId, id], map: "import_jobs_company_id_unique")
+  @@index([committedStatementId])
+  @@index([companyId, sourceFileId], map: "import_jobs_company_sourceFileId_idx")
+  @@index([companyId, status, createdAt], map: "import_jobs_company_status_createdAt_idx")
+  @@index([sourceFileId])
+}
+
+model import_raw_rows {
+  id          String      @id
+  companyId   String
+  importJobId String
+  sheetName   String
+  sheetIndex  Int
+  rowNumber   Int
+  values      Json
+  createdAt   DateTime    @default(now()) @db.Timestamptz(6)
+  import_jobs import_jobs @relation(fields: [companyId, importJobId], references: [companyId, id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([companyId, importJobId, sheetIndex, rowNumber], map: "import_raw_rows_job_row_unique")
+  @@index([companyId, importJobId], map: "import_raw_rows_company_job_idx")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model metric_definitions {
+  id                     String                   @id
+  code                   String
+  statementType          FinancialStatementType
+  label                  String
+  category               String
+  description            String?
+  isStandard             Boolean                  @default(true)
+  displayOrder           Int                      @default(0)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime
+  financial_line_items   financial_line_items[]
+  import_normalized_rows import_normalized_rows[]
+
+  @@unique([code, statementType])
+  @@unique([id, statementType])
+}
+
+model import_normalized_rows {
+  id                 String             @id
+  companyId          String
+  importJobId        String
+  metricDefinitionId String
+  value              String
+  statementType      String
+  sheetIndex         Int
+  rowNumber          Int
+  sourceIndex        Int?
+  createdAt          DateTime           @default(now()) @db.Timestamptz(6)
+  import_jobs        import_jobs        @relation(fields: [companyId, importJobId], references: [companyId, id], onDelete: Cascade, onUpdate: NoAction, map: "import_normalized_rows_import_job_fkey")
+  metric_definitions metric_definitions @relation(fields: [metricDefinitionId], references: [id], onUpdate: NoAction, map: "import_normalized_rows_metric_definition_fkey")
+
+  @@unique([companyId, importJobId, metricDefinitionId], map: "import_normalized_rows_company_job_metric_unique")
+  @@index([companyId, importJobId], map: "import_normalized_rows_company_job_idx")
+  @@index([metricDefinitionId], map: "import_normalized_rows_metric_def_idx")
+  @@map("import_normalized_rows")
+}
+
+model source_files {
+  id               String           @id
+  companyId        String
+  originalFilename String           @db.VarChar(255)
+  storageKey       String           @unique
+  mimeType         String           @db.VarChar(100)
+  sizeBytes        Int
+  sha256           String           @db.VarChar(64)
+  uploadedBy       String
+  uploadedAt       DateTime         @default(now()) @db.Timestamptz(6)
+  status           SourceFileStatus @default(UPLOADED)
+  metadata         Json?
+  import_jobs      import_jobs[]
+  companies        Company          @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([companyId, id], map: "source_files_company_id_unique")
+  @@unique([companyId, sha256], map: "source_files_company_sha_unique")
+  @@index([companyId, uploadedAt], map: "source_files_company_uploadedAt_idx")
+  @@index([sha256])
+  @@index([status])
+}
+
+enum Role {
+  ADMIN
+  ANALYST
+  USER
+}
+
+enum FinancialStatementType {
+  INCOME_STATEMENT
+  BALANCE_SHEET
+  CASH_FLOW
+}
+
+enum AuditAction {
+  AUTH_LOGIN_SUCCESS
+  AUTH_LOGOUT
+  AUTH_REFRESH_SUCCESS
+  AUTH_REFRESH_FAILURE
+  COMPANY_CREATE
+  COMPANY_UPDATE
+  COMPANY_DELETE
+  MEMBER_ADD
+  MEMBER_ROLE_UPDATE
+  MEMBER_REMOVE
+  MEMBER_SELF_LEAVE
+  OWNERSHIP_TRANSFER
+  FINANCIAL_STATEMENT_CREATE
+  FINANCIAL_STATEMENT_UPDATE
+  FINANCIAL_STATEMENT_DELETE
+  LINE_ITEM_CREATE
+  LINE_ITEM_UPDATE
+  LINE_ITEM_DELETE
+  LINE_ITEMS_REPLACE
+  INGEST_UPLOAD
+  INGEST_MAPPING_CONFIRMED
+  INGEST_VALIDATED
+  INGEST_NORMALIZED
+  INGEST_READY
+  INGEST_COMMIT
+  INGEST_FAILURE
+}
+
+enum AuditActorType {
+  USER
+  SYSTEM
+}
+
+enum AuditResourceType {
+  USER
+  COMPANY
+  COMPANY_MEMBER
+  FINANCIAL_STATEMENT
+  FINANCIAL_LINE_ITEM
+  AUTH_SESSION
+  IMPORT_JOB
+  SOURCE_FILE
+}
+
+enum AuditResult {
+  SUCCESS
+  FAILURE
+}
+
+enum CompanyMemberRole {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+enum FinancialDataSourceType {
+  MANUAL
+  CSV_IMPORT
+  API
+  AI_EXTRACTED
+}
+
+enum FinancialPeriodType {
+  ANNUAL
+  QUARTERLY
+  TTM
+}
+
+enum FinancialScale {
+  ONES
+  THOUSANDS
+  MILLIONS
+  BILLIONS
+}
+
+enum ImportJobStatus {
+  UPLOADED
+  PARSED
+  NEEDS_MAPPING
+  MAPPED
+  VALIDATED
+  READY
+  COMPLETED
+  FAILED
+}
+
+enum SourceFileStatus {
+  UPLOADED
+  FAILED
 }

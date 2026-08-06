@@ -1,0 +1,26 @@
+info:
+  name: POST Upload Financial File
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/upload"
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value:
+          - C:\Users\Asus\Desktop\test.csv
+        contentType: text/csv; charset=utf-8
+        description: Choose a CSV/XLSX
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY3MjAwMiwiZXhwIjoxNzg1NjcyOTAyfQ.yy9vHglWpil4XcxIlasp8r9rxA77eCwxGoKyEpYZygI
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

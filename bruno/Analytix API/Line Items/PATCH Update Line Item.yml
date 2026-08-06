@@ -1,0 +1,25 @@
+info:
+  name: PATCH Update Line Item
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/financial-line-items/cmsbo2g6f000ft8g16d9h6c1e"
+  body:
+    type: json
+    data: |-
+      {
+        "value": "7500000.000000",
+        "labelOverride": "Updated Total Assets",
+        "displayOrder": 2
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NzM0MCwiZXhwIjoxNzg1NjY4MjQwfQ.FJ_WnDynB0qJ3LGLlj7C9tv3ELgWkjFTHvfRj1nIFUg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

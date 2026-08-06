@@ -54,7 +54,15 @@ export const ModelName = {
   User: 'User',
   Company: 'Company',
   FinancialStatement: 'FinancialStatement',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  audit_events: 'audit_events',
+  company_members: 'company_members',
+  financial_line_items: 'financial_line_items',
+  import_jobs: 'import_jobs',
+  import_raw_rows: 'import_raw_rows',
+  metric_definitions: 'metric_definitions',
+  import_normalized_rows: 'import_normalized_rows',
+  source_files: 'source_files'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,12 +84,12 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password',
   name: 'name',
-  role: 'role',
-  lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lastLoginAt: 'lastLoginAt',
+  password: 'password',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -93,7 +101,8 @@ export const CompanyScalarFieldEnum = {
   industry: 'industry',
   website: 'website',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId'
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -106,7 +115,16 @@ export const FinancialStatementScalarFieldEnum = {
   periodStart: 'periodStart',
   periodEnd: 'periodEnd',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  fiscalYear: 'fiscalYear',
+  fiscalQuarter: 'fiscalQuarter',
+  periodType: 'periodType',
+  currency: 'currency',
+  scale: 'scale',
+  sourceType: 'sourceType',
+  sourceReference: 'sourceReference',
+  importedAt: 'importedAt',
+  importedBy: 'importedBy'
 } as const
 
 export type FinancialStatementScalarFieldEnum = (typeof FinancialStatementScalarFieldEnum)[keyof typeof FinancialStatementScalarFieldEnum]
@@ -125,12 +143,166 @@ export const RefreshTokenScalarFieldEnum = {
 export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 
+export const Audit_eventsScalarFieldEnum = {
+  id: 'id',
+  occurredAt: 'occurredAt',
+  actorType: 'actorType',
+  actorUserId: 'actorUserId',
+  actorEmail: 'actorEmail',
+  actorGlobalRole: 'actorGlobalRole',
+  companyId: 'companyId',
+  action: 'action',
+  resourceType: 'resourceType',
+  resourceId: 'resourceId',
+  result: 'result',
+  failureReason: 'failureReason',
+  changes: 'changes',
+  metadata: 'metadata',
+  requestId: 'requestId',
+  createdAt: 'createdAt'
+} as const
+
+export type Audit_eventsScalarFieldEnum = (typeof Audit_eventsScalarFieldEnum)[keyof typeof Audit_eventsScalarFieldEnum]
+
+
+export const Company_membersScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyId: 'companyId',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type Company_membersScalarFieldEnum = (typeof Company_membersScalarFieldEnum)[keyof typeof Company_membersScalarFieldEnum]
+
+
+export const Financial_line_itemsScalarFieldEnum = {
+  id: 'id',
+  financialStatementId: 'financialStatementId',
+  metricDefinitionId: 'metricDefinitionId',
+  value: 'value',
+  labelOverride: 'labelOverride',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  statementType: 'statementType'
+} as const
+
+export type Financial_line_itemsScalarFieldEnum = (typeof Financial_line_itemsScalarFieldEnum)[keyof typeof Financial_line_itemsScalarFieldEnum]
+
+
+export const Import_jobsScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  sourceFileId: 'sourceFileId',
+  statementType: 'statementType',
+  status: 'status',
+  mapping: 'mapping',
+  parseSummary: 'parseSummary',
+  validationErrors: 'validationErrors',
+  lastCommitError: 'lastCommitError',
+  committedStatementId: 'committedStatementId',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  completedAt: 'completedAt',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  fiscalYear: 'fiscalYear',
+  periodType: 'periodType',
+  currency: 'currency',
+  scale: 'scale',
+  normalizedAt: 'normalizedAt'
+} as const
+
+export type Import_jobsScalarFieldEnum = (typeof Import_jobsScalarFieldEnum)[keyof typeof Import_jobsScalarFieldEnum]
+
+
+export const Import_raw_rowsScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  importJobId: 'importJobId',
+  sheetName: 'sheetName',
+  sheetIndex: 'sheetIndex',
+  rowNumber: 'rowNumber',
+  values: 'values',
+  createdAt: 'createdAt'
+} as const
+
+export type Import_raw_rowsScalarFieldEnum = (typeof Import_raw_rowsScalarFieldEnum)[keyof typeof Import_raw_rowsScalarFieldEnum]
+
+
+export const Metric_definitionsScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  statementType: 'statementType',
+  label: 'label',
+  category: 'category',
+  description: 'description',
+  isStandard: 'isStandard',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type Metric_definitionsScalarFieldEnum = (typeof Metric_definitionsScalarFieldEnum)[keyof typeof Metric_definitionsScalarFieldEnum]
+
+
+export const Import_normalized_rowsScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  importJobId: 'importJobId',
+  metricDefinitionId: 'metricDefinitionId',
+  value: 'value',
+  statementType: 'statementType',
+  sheetIndex: 'sheetIndex',
+  rowNumber: 'rowNumber',
+  sourceIndex: 'sourceIndex',
+  createdAt: 'createdAt'
+} as const
+
+export type Import_normalized_rowsScalarFieldEnum = (typeof Import_normalized_rowsScalarFieldEnum)[keyof typeof Import_normalized_rowsScalarFieldEnum]
+
+
+export const Source_filesScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  originalFilename: 'originalFilename',
+  storageKey: 'storageKey',
+  mimeType: 'mimeType',
+  sizeBytes: 'sizeBytes',
+  sha256: 'sha256',
+  uploadedBy: 'uploadedBy',
+  uploadedAt: 'uploadedAt',
+  status: 'status',
+  metadata: 'metadata'
+} as const
+
+export type Source_filesScalarFieldEnum = (typeof Source_filesScalarFieldEnum)[keyof typeof Source_filesScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -147,4 +319,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

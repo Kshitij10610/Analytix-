@@ -1,0 +1,23 @@
+info:
+  name: PATCH Update Member Role
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/members/8e70759f-c271-42ce-a332-dbcc7fa20e25"
+  body:
+    type: json
+    data: |-
+      {
+        "role": "VIEWER"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NDAwOCwiZXhwIjoxNzg1NjY0OTA4fQ.UHaOTU76fYS14tPsxssPjmSLLic2OMxoWaXmv8hinhI
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

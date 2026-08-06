@@ -1,0 +1,15 @@
+info:
+  name: POST Commit Import
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/cmsbr0k1t0004usg11j2m3pqr/commit"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

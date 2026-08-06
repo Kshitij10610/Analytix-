@@ -1,0 +1,17 @@
+info:
+  name: GET Line Items of a Statement
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/financial-statements/cmsbndq98000at8g1yd6u86km/line-items"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NzM0MCwiZXhwIjoxNzg1NjY4MjQwfQ.FJ_WnDynB0qJ3LGLlj7C9tv3ELgWkjFTHvfRj1nIFUg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

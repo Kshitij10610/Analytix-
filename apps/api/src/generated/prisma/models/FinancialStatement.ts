@@ -20,8 +20,20 @@ export type FinancialStatementModel = runtime.Types.Result.DefaultSelection<Pris
 
 export type AggregateFinancialStatement = {
   _count: FinancialStatementCountAggregateOutputType | null
+  _avg: FinancialStatementAvgAggregateOutputType | null
+  _sum: FinancialStatementSumAggregateOutputType | null
   _min: FinancialStatementMinAggregateOutputType | null
   _max: FinancialStatementMaxAggregateOutputType | null
+}
+
+export type FinancialStatementAvgAggregateOutputType = {
+  fiscalYear: number | null
+  fiscalQuarter: number | null
+}
+
+export type FinancialStatementSumAggregateOutputType = {
+  fiscalYear: number | null
+  fiscalQuarter: number | null
 }
 
 export type FinancialStatementMinAggregateOutputType = {
@@ -32,6 +44,15 @@ export type FinancialStatementMinAggregateOutputType = {
   periodEnd: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  fiscalYear: number | null
+  fiscalQuarter: number | null
+  periodType: $Enums.FinancialPeriodType | null
+  currency: string | null
+  scale: $Enums.FinancialScale | null
+  sourceType: $Enums.FinancialDataSourceType | null
+  sourceReference: string | null
+  importedAt: Date | null
+  importedBy: string | null
 }
 
 export type FinancialStatementMaxAggregateOutputType = {
@@ -42,6 +63,15 @@ export type FinancialStatementMaxAggregateOutputType = {
   periodEnd: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  fiscalYear: number | null
+  fiscalQuarter: number | null
+  periodType: $Enums.FinancialPeriodType | null
+  currency: string | null
+  scale: $Enums.FinancialScale | null
+  sourceType: $Enums.FinancialDataSourceType | null
+  sourceReference: string | null
+  importedAt: Date | null
+  importedBy: string | null
 }
 
 export type FinancialStatementCountAggregateOutputType = {
@@ -52,9 +82,28 @@ export type FinancialStatementCountAggregateOutputType = {
   periodEnd: number
   createdAt: number
   updatedAt: number
+  fiscalYear: number
+  fiscalQuarter: number
+  periodType: number
+  currency: number
+  scale: number
+  sourceType: number
+  sourceReference: number
+  importedAt: number
+  importedBy: number
   _all: number
 }
 
+
+export type FinancialStatementAvgAggregateInputType = {
+  fiscalYear?: true
+  fiscalQuarter?: true
+}
+
+export type FinancialStatementSumAggregateInputType = {
+  fiscalYear?: true
+  fiscalQuarter?: true
+}
 
 export type FinancialStatementMinAggregateInputType = {
   id?: true
@@ -64,6 +113,15 @@ export type FinancialStatementMinAggregateInputType = {
   periodEnd?: true
   createdAt?: true
   updatedAt?: true
+  fiscalYear?: true
+  fiscalQuarter?: true
+  periodType?: true
+  currency?: true
+  scale?: true
+  sourceType?: true
+  sourceReference?: true
+  importedAt?: true
+  importedBy?: true
 }
 
 export type FinancialStatementMaxAggregateInputType = {
@@ -74,6 +132,15 @@ export type FinancialStatementMaxAggregateInputType = {
   periodEnd?: true
   createdAt?: true
   updatedAt?: true
+  fiscalYear?: true
+  fiscalQuarter?: true
+  periodType?: true
+  currency?: true
+  scale?: true
+  sourceType?: true
+  sourceReference?: true
+  importedAt?: true
+  importedBy?: true
 }
 
 export type FinancialStatementCountAggregateInputType = {
@@ -84,6 +151,15 @@ export type FinancialStatementCountAggregateInputType = {
   periodEnd?: true
   createdAt?: true
   updatedAt?: true
+  fiscalYear?: true
+  fiscalQuarter?: true
+  periodType?: true
+  currency?: true
+  scale?: true
+  sourceType?: true
+  sourceReference?: true
+  importedAt?: true
+  importedBy?: true
   _all?: true
 }
 
@@ -125,6 +201,18 @@ export type FinancialStatementAggregateArgs<ExtArgs extends runtime.Types.Extens
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: FinancialStatementAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: FinancialStatementSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: FinancialStatementMinAggregateInputType
@@ -155,6 +243,8 @@ export type FinancialStatementGroupByArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   _count?: FinancialStatementCountAggregateInputType | true
+  _avg?: FinancialStatementAvgAggregateInputType
+  _sum?: FinancialStatementSumAggregateInputType
   _min?: FinancialStatementMinAggregateInputType
   _max?: FinancialStatementMaxAggregateInputType
 }
@@ -167,7 +257,18 @@ export type FinancialStatementGroupByOutputType = {
   periodEnd: Date
   createdAt: Date
   updatedAt: Date
+  fiscalYear: number
+  fiscalQuarter: number | null
+  periodType: $Enums.FinancialPeriodType
+  currency: string
+  scale: $Enums.FinancialScale
+  sourceType: $Enums.FinancialDataSourceType | null
+  sourceReference: string | null
+  importedAt: Date | null
+  importedBy: string | null
   _count: FinancialStatementCountAggregateOutputType | null
+  _avg: FinancialStatementAvgAggregateOutputType | null
+  _sum: FinancialStatementSumAggregateOutputType | null
   _min: FinancialStatementMinAggregateOutputType | null
   _max: FinancialStatementMaxAggregateOutputType | null
 }
@@ -198,7 +299,18 @@ export type FinancialStatementWhereInput = {
   periodEnd?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  fiscalYear?: Prisma.IntFilter<"FinancialStatement"> | number
+  fiscalQuarter?: Prisma.IntNullableFilter<"FinancialStatement"> | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFilter<"FinancialStatement"> | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFilter<"FinancialStatement"> | string
+  scale?: Prisma.EnumFinancialScaleFilter<"FinancialStatement"> | $Enums.FinancialScale
+  sourceType?: Prisma.EnumFinancialDataSourceTypeNullableFilter<"FinancialStatement"> | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+  importedAt?: Prisma.DateTimeNullableFilter<"FinancialStatement"> | Date | string | null
+  importedBy?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+  financial_line_items?: Prisma.Financial_line_itemsListRelationFilter
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  users?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type FinancialStatementOrderByWithRelationInput = {
@@ -209,12 +321,26 @@ export type FinancialStatementOrderByWithRelationInput = {
   periodEnd?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  scale?: Prisma.SortOrder
+  sourceType?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  importedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  importedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  financial_line_items?: Prisma.financial_line_itemsOrderByRelationAggregateInput
   company?: Prisma.CompanyOrderByWithRelationInput
+  users?: Prisma.UserOrderByWithRelationInput
 }
 
 export type FinancialStatementWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  companyId_type_periodStart_periodEnd?: Prisma.FinancialStatementCompanyIdTypePeriodStartPeriodEndCompoundUniqueInput
+  companyId_type_fiscalYear_periodType?: Prisma.FinancialStatementCompanyIdTypeFiscalYearPeriodTypeCompoundUniqueInput
+  id_type?: Prisma.FinancialStatementIdTypeCompoundUniqueInput
+  companyId_type_fiscalYear_fiscalQuarter_periodType?: Prisma.FinancialStatementCompanyIdTypeFiscalYearFiscalQuarterPeriodTypeCompoundUniqueInput
+  companyId_type_periodStart_periodEnd_periodType?: Prisma.FinancialStatementCompanyIdTypePeriodStartPeriodEndPeriodTypeCompoundUniqueInput
   AND?: Prisma.FinancialStatementWhereInput | Prisma.FinancialStatementWhereInput[]
   OR?: Prisma.FinancialStatementWhereInput[]
   NOT?: Prisma.FinancialStatementWhereInput | Prisma.FinancialStatementWhereInput[]
@@ -224,8 +350,19 @@ export type FinancialStatementWhereUniqueInput = Prisma.AtLeast<{
   periodEnd?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  fiscalYear?: Prisma.IntFilter<"FinancialStatement"> | number
+  fiscalQuarter?: Prisma.IntNullableFilter<"FinancialStatement"> | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFilter<"FinancialStatement"> | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFilter<"FinancialStatement"> | string
+  scale?: Prisma.EnumFinancialScaleFilter<"FinancialStatement"> | $Enums.FinancialScale
+  sourceType?: Prisma.EnumFinancialDataSourceTypeNullableFilter<"FinancialStatement"> | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+  importedAt?: Prisma.DateTimeNullableFilter<"FinancialStatement"> | Date | string | null
+  importedBy?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+  financial_line_items?: Prisma.Financial_line_itemsListRelationFilter
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
-}, "id" | "companyId_type_periodStart_periodEnd">
+  users?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+}, "id" | "companyId_type_fiscalYear_periodType" | "id_type" | "companyId_type_fiscalYear_fiscalQuarter_periodType" | "companyId_type_periodStart_periodEnd_periodType">
 
 export type FinancialStatementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -235,9 +372,20 @@ export type FinancialStatementOrderByWithAggregationInput = {
   periodEnd?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  scale?: Prisma.SortOrder
+  sourceType?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  importedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  importedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.FinancialStatementCountOrderByAggregateInput
+  _avg?: Prisma.FinancialStatementAvgOrderByAggregateInput
   _max?: Prisma.FinancialStatementMaxOrderByAggregateInput
   _min?: Prisma.FinancialStatementMinOrderByAggregateInput
+  _sum?: Prisma.FinancialStatementSumOrderByAggregateInput
 }
 
 export type FinancialStatementScalarWhereWithAggregatesInput = {
@@ -251,6 +399,15 @@ export type FinancialStatementScalarWhereWithAggregatesInput = {
   periodEnd?: Prisma.DateTimeWithAggregatesFilter<"FinancialStatement"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"FinancialStatement"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"FinancialStatement"> | Date | string
+  fiscalYear?: Prisma.IntWithAggregatesFilter<"FinancialStatement"> | number
+  fiscalQuarter?: Prisma.IntNullableWithAggregatesFilter<"FinancialStatement"> | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeWithAggregatesFilter<"FinancialStatement"> | $Enums.FinancialPeriodType
+  currency?: Prisma.StringWithAggregatesFilter<"FinancialStatement"> | string
+  scale?: Prisma.EnumFinancialScaleWithAggregatesFilter<"FinancialStatement"> | $Enums.FinancialScale
+  sourceType?: Prisma.EnumFinancialDataSourceTypeNullableWithAggregatesFilter<"FinancialStatement"> | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.StringNullableWithAggregatesFilter<"FinancialStatement"> | string | null
+  importedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"FinancialStatement"> | Date | string | null
+  importedBy?: Prisma.StringNullableWithAggregatesFilter<"FinancialStatement"> | string | null
 }
 
 export type FinancialStatementCreateInput = {
@@ -260,7 +417,17 @@ export type FinancialStatementCreateInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsCreateNestedManyWithoutFinancial_statementsInput
   company: Prisma.CompanyCreateNestedOneWithoutFinancialStatementsInput
+  users?: Prisma.UserCreateNestedOneWithoutFinancial_statementsInput
 }
 
 export type FinancialStatementUncheckedCreateInput = {
@@ -271,6 +438,16 @@ export type FinancialStatementUncheckedCreateInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  importedBy?: string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedCreateNestedManyWithoutFinancial_statementsInput
 }
 
 export type FinancialStatementUpdateInput = {
@@ -280,7 +457,17 @@ export type FinancialStatementUpdateInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsUpdateManyWithoutFinancial_statementsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutFinancialStatementsNestedInput
+  users?: Prisma.UserUpdateOneWithoutFinancial_statementsNestedInput
 }
 
 export type FinancialStatementUncheckedUpdateInput = {
@@ -291,6 +478,16 @@ export type FinancialStatementUncheckedUpdateInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedUpdateManyWithoutFinancial_statementsNestedInput
 }
 
 export type FinancialStatementCreateManyInput = {
@@ -301,6 +498,15 @@ export type FinancialStatementCreateManyInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  importedBy?: string | null
 }
 
 export type FinancialStatementUpdateManyMutationInput = {
@@ -310,6 +516,14 @@ export type FinancialStatementUpdateManyMutationInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FinancialStatementUncheckedUpdateManyInput = {
@@ -320,6 +534,15 @@ export type FinancialStatementUncheckedUpdateManyInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FinancialStatementListRelationFilter = {
@@ -332,11 +555,32 @@ export type FinancialStatementOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type FinancialStatementCompanyIdTypePeriodStartPeriodEndCompoundUniqueInput = {
+export type FinancialStatementCompanyIdTypeFiscalYearPeriodTypeCompoundUniqueInput = {
+  companyId: string
+  type: $Enums.FinancialStatementType
+  fiscalYear: number
+  periodType: $Enums.FinancialPeriodType
+}
+
+export type FinancialStatementIdTypeCompoundUniqueInput = {
+  id: string
+  type: $Enums.FinancialStatementType
+}
+
+export type FinancialStatementCompanyIdTypeFiscalYearFiscalQuarterPeriodTypeCompoundUniqueInput = {
+  companyId: string
+  type: $Enums.FinancialStatementType
+  fiscalYear: number
+  fiscalQuarter: number
+  periodType: $Enums.FinancialPeriodType
+}
+
+export type FinancialStatementCompanyIdTypePeriodStartPeriodEndPeriodTypeCompoundUniqueInput = {
   companyId: string
   type: $Enums.FinancialStatementType
   periodStart: Date | string
   periodEnd: Date | string
+  periodType: $Enums.FinancialPeriodType
 }
 
 export type FinancialStatementCountOrderByAggregateInput = {
@@ -347,6 +591,20 @@ export type FinancialStatementCountOrderByAggregateInput = {
   periodEnd?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrder
+  periodType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  scale?: Prisma.SortOrder
+  sourceType?: Prisma.SortOrder
+  sourceReference?: Prisma.SortOrder
+  importedAt?: Prisma.SortOrder
+  importedBy?: Prisma.SortOrder
+}
+
+export type FinancialStatementAvgOrderByAggregateInput = {
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrder
 }
 
 export type FinancialStatementMaxOrderByAggregateInput = {
@@ -357,6 +615,15 @@ export type FinancialStatementMaxOrderByAggregateInput = {
   periodEnd?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrder
+  periodType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  scale?: Prisma.SortOrder
+  sourceType?: Prisma.SortOrder
+  sourceReference?: Prisma.SortOrder
+  importedAt?: Prisma.SortOrder
+  importedBy?: Prisma.SortOrder
 }
 
 export type FinancialStatementMinOrderByAggregateInput = {
@@ -367,6 +634,67 @@ export type FinancialStatementMinOrderByAggregateInput = {
   periodEnd?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrder
+  periodType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  scale?: Prisma.SortOrder
+  sourceType?: Prisma.SortOrder
+  sourceReference?: Prisma.SortOrder
+  importedAt?: Prisma.SortOrder
+  importedBy?: Prisma.SortOrder
+}
+
+export type FinancialStatementSumOrderByAggregateInput = {
+  fiscalYear?: Prisma.SortOrder
+  fiscalQuarter?: Prisma.SortOrder
+}
+
+export type FinancialStatementScalarRelationFilter = {
+  is?: Prisma.FinancialStatementWhereInput
+  isNot?: Prisma.FinancialStatementWhereInput
+}
+
+export type FinancialStatementCreateNestedManyWithoutUsersInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput> | Prisma.FinancialStatementCreateWithoutUsersInput[] | Prisma.FinancialStatementUncheckedCreateWithoutUsersInput[]
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutUsersInput | Prisma.FinancialStatementCreateOrConnectWithoutUsersInput[]
+  createMany?: Prisma.FinancialStatementCreateManyUsersInputEnvelope
+  connect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+}
+
+export type FinancialStatementUncheckedCreateNestedManyWithoutUsersInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput> | Prisma.FinancialStatementCreateWithoutUsersInput[] | Prisma.FinancialStatementUncheckedCreateWithoutUsersInput[]
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutUsersInput | Prisma.FinancialStatementCreateOrConnectWithoutUsersInput[]
+  createMany?: Prisma.FinancialStatementCreateManyUsersInputEnvelope
+  connect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+}
+
+export type FinancialStatementUpdateManyWithoutUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput> | Prisma.FinancialStatementCreateWithoutUsersInput[] | Prisma.FinancialStatementUncheckedCreateWithoutUsersInput[]
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutUsersInput | Prisma.FinancialStatementCreateOrConnectWithoutUsersInput[]
+  upsert?: Prisma.FinancialStatementUpsertWithWhereUniqueWithoutUsersInput | Prisma.FinancialStatementUpsertWithWhereUniqueWithoutUsersInput[]
+  createMany?: Prisma.FinancialStatementCreateManyUsersInputEnvelope
+  set?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  disconnect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  delete?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  connect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  update?: Prisma.FinancialStatementUpdateWithWhereUniqueWithoutUsersInput | Prisma.FinancialStatementUpdateWithWhereUniqueWithoutUsersInput[]
+  updateMany?: Prisma.FinancialStatementUpdateManyWithWhereWithoutUsersInput | Prisma.FinancialStatementUpdateManyWithWhereWithoutUsersInput[]
+  deleteMany?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
+}
+
+export type FinancialStatementUncheckedUpdateManyWithoutUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput> | Prisma.FinancialStatementCreateWithoutUsersInput[] | Prisma.FinancialStatementUncheckedCreateWithoutUsersInput[]
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutUsersInput | Prisma.FinancialStatementCreateOrConnectWithoutUsersInput[]
+  upsert?: Prisma.FinancialStatementUpsertWithWhereUniqueWithoutUsersInput | Prisma.FinancialStatementUpsertWithWhereUniqueWithoutUsersInput[]
+  createMany?: Prisma.FinancialStatementCreateManyUsersInputEnvelope
+  set?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  disconnect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  delete?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  connect?: Prisma.FinancialStatementWhereUniqueInput | Prisma.FinancialStatementWhereUniqueInput[]
+  update?: Prisma.FinancialStatementUpdateWithWhereUniqueWithoutUsersInput | Prisma.FinancialStatementUpdateWithWhereUniqueWithoutUsersInput[]
+  updateMany?: Prisma.FinancialStatementUpdateManyWithWhereWithoutUsersInput | Prisma.FinancialStatementUpdateManyWithWhereWithoutUsersInput[]
+  deleteMany?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
 }
 
 export type FinancialStatementCreateNestedManyWithoutCompanyInput = {
@@ -415,6 +743,134 @@ export type EnumFinancialStatementTypeFieldUpdateOperationsInput = {
   set?: $Enums.FinancialStatementType
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type EnumFinancialPeriodTypeFieldUpdateOperationsInput = {
+  set?: $Enums.FinancialPeriodType
+}
+
+export type EnumFinancialScaleFieldUpdateOperationsInput = {
+  set?: $Enums.FinancialScale
+}
+
+export type NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput = {
+  set?: $Enums.FinancialDataSourceType | null
+}
+
+export type FinancialStatementCreateNestedOneWithoutFinancial_line_itemsInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedCreateWithoutFinancial_line_itemsInput>
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutFinancial_line_itemsInput
+  connect?: Prisma.FinancialStatementWhereUniqueInput
+}
+
+export type FinancialStatementUpdateOneRequiredWithoutFinancial_line_itemsNestedInput = {
+  create?: Prisma.XOR<Prisma.FinancialStatementCreateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedCreateWithoutFinancial_line_itemsInput>
+  connectOrCreate?: Prisma.FinancialStatementCreateOrConnectWithoutFinancial_line_itemsInput
+  upsert?: Prisma.FinancialStatementUpsertWithoutFinancial_line_itemsInput
+  connect?: Prisma.FinancialStatementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FinancialStatementUpdateToOneWithWhereWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUpdateWithoutFinancial_line_itemsInput>, Prisma.FinancialStatementUncheckedUpdateWithoutFinancial_line_itemsInput>
+}
+
+export type FinancialStatementCreateWithoutUsersInput = {
+  id?: string
+  type: $Enums.FinancialStatementType
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsCreateNestedManyWithoutFinancial_statementsInput
+  company: Prisma.CompanyCreateNestedOneWithoutFinancialStatementsInput
+}
+
+export type FinancialStatementUncheckedCreateWithoutUsersInput = {
+  id?: string
+  companyId: string
+  type: $Enums.FinancialStatementType
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedCreateNestedManyWithoutFinancial_statementsInput
+}
+
+export type FinancialStatementCreateOrConnectWithoutUsersInput = {
+  where: Prisma.FinancialStatementWhereUniqueInput
+  create: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput>
+}
+
+export type FinancialStatementCreateManyUsersInputEnvelope = {
+  data: Prisma.FinancialStatementCreateManyUsersInput | Prisma.FinancialStatementCreateManyUsersInput[]
+  skipDuplicates?: boolean
+}
+
+export type FinancialStatementUpsertWithWhereUniqueWithoutUsersInput = {
+  where: Prisma.FinancialStatementWhereUniqueInput
+  update: Prisma.XOR<Prisma.FinancialStatementUpdateWithoutUsersInput, Prisma.FinancialStatementUncheckedUpdateWithoutUsersInput>
+  create: Prisma.XOR<Prisma.FinancialStatementCreateWithoutUsersInput, Prisma.FinancialStatementUncheckedCreateWithoutUsersInput>
+}
+
+export type FinancialStatementUpdateWithWhereUniqueWithoutUsersInput = {
+  where: Prisma.FinancialStatementWhereUniqueInput
+  data: Prisma.XOR<Prisma.FinancialStatementUpdateWithoutUsersInput, Prisma.FinancialStatementUncheckedUpdateWithoutUsersInput>
+}
+
+export type FinancialStatementUpdateManyWithWhereWithoutUsersInput = {
+  where: Prisma.FinancialStatementScalarWhereInput
+  data: Prisma.XOR<Prisma.FinancialStatementUpdateManyMutationInput, Prisma.FinancialStatementUncheckedUpdateManyWithoutUsersInput>
+}
+
+export type FinancialStatementScalarWhereInput = {
+  AND?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
+  OR?: Prisma.FinancialStatementScalarWhereInput[]
+  NOT?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
+  id?: Prisma.StringFilter<"FinancialStatement"> | string
+  companyId?: Prisma.StringFilter<"FinancialStatement"> | string
+  type?: Prisma.EnumFinancialStatementTypeFilter<"FinancialStatement"> | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  periodEnd?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+  fiscalYear?: Prisma.IntFilter<"FinancialStatement"> | number
+  fiscalQuarter?: Prisma.IntNullableFilter<"FinancialStatement"> | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFilter<"FinancialStatement"> | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFilter<"FinancialStatement"> | string
+  scale?: Prisma.EnumFinancialScaleFilter<"FinancialStatement"> | $Enums.FinancialScale
+  sourceType?: Prisma.EnumFinancialDataSourceTypeNullableFilter<"FinancialStatement"> | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+  importedAt?: Prisma.DateTimeNullableFilter<"FinancialStatement"> | Date | string | null
+  importedBy?: Prisma.StringNullableFilter<"FinancialStatement"> | string | null
+}
+
 export type FinancialStatementCreateWithoutCompanyInput = {
   id?: string
   type: $Enums.FinancialStatementType
@@ -422,6 +878,16 @@ export type FinancialStatementCreateWithoutCompanyInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsCreateNestedManyWithoutFinancial_statementsInput
+  users?: Prisma.UserCreateNestedOneWithoutFinancial_statementsInput
 }
 
 export type FinancialStatementUncheckedCreateWithoutCompanyInput = {
@@ -431,6 +897,16 @@ export type FinancialStatementUncheckedCreateWithoutCompanyInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  importedBy?: string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedCreateNestedManyWithoutFinancial_statementsInput
 }
 
 export type FinancialStatementCreateOrConnectWithoutCompanyInput = {
@@ -459,17 +935,170 @@ export type FinancialStatementUpdateManyWithWhereWithoutCompanyInput = {
   data: Prisma.XOR<Prisma.FinancialStatementUpdateManyMutationInput, Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyInput>
 }
 
-export type FinancialStatementScalarWhereInput = {
-  AND?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
-  OR?: Prisma.FinancialStatementScalarWhereInput[]
-  NOT?: Prisma.FinancialStatementScalarWhereInput | Prisma.FinancialStatementScalarWhereInput[]
-  id?: Prisma.StringFilter<"FinancialStatement"> | string
-  companyId?: Prisma.StringFilter<"FinancialStatement"> | string
-  type?: Prisma.EnumFinancialStatementTypeFilter<"FinancialStatement"> | $Enums.FinancialStatementType
-  periodStart?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
-  periodEnd?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
-  createdAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"FinancialStatement"> | Date | string
+export type FinancialStatementCreateWithoutFinancial_line_itemsInput = {
+  id?: string
+  type: $Enums.FinancialStatementType
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutFinancialStatementsInput
+  users?: Prisma.UserCreateNestedOneWithoutFinancial_statementsInput
+}
+
+export type FinancialStatementUncheckedCreateWithoutFinancial_line_itemsInput = {
+  id?: string
+  companyId: string
+  type: $Enums.FinancialStatementType
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  importedBy?: string | null
+}
+
+export type FinancialStatementCreateOrConnectWithoutFinancial_line_itemsInput = {
+  where: Prisma.FinancialStatementWhereUniqueInput
+  create: Prisma.XOR<Prisma.FinancialStatementCreateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedCreateWithoutFinancial_line_itemsInput>
+}
+
+export type FinancialStatementUpsertWithoutFinancial_line_itemsInput = {
+  update: Prisma.XOR<Prisma.FinancialStatementUpdateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedUpdateWithoutFinancial_line_itemsInput>
+  create: Prisma.XOR<Prisma.FinancialStatementCreateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedCreateWithoutFinancial_line_itemsInput>
+  where?: Prisma.FinancialStatementWhereInput
+}
+
+export type FinancialStatementUpdateToOneWithWhereWithoutFinancial_line_itemsInput = {
+  where?: Prisma.FinancialStatementWhereInput
+  data: Prisma.XOR<Prisma.FinancialStatementUpdateWithoutFinancial_line_itemsInput, Prisma.FinancialStatementUncheckedUpdateWithoutFinancial_line_itemsInput>
+}
+
+export type FinancialStatementUpdateWithoutFinancial_line_itemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFinancialStatementTypeFieldUpdateOperationsInput | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutFinancialStatementsNestedInput
+  users?: Prisma.UserUpdateOneWithoutFinancial_statementsNestedInput
+}
+
+export type FinancialStatementUncheckedUpdateWithoutFinancial_line_itemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFinancialStatementTypeFieldUpdateOperationsInput | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type FinancialStatementCreateManyUsersInput = {
+  id?: string
+  companyId: string
+  type: $Enums.FinancialStatementType
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+}
+
+export type FinancialStatementUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFinancialStatementTypeFieldUpdateOperationsInput | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsUpdateManyWithoutFinancial_statementsNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutFinancialStatementsNestedInput
+}
+
+export type FinancialStatementUncheckedUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFinancialStatementTypeFieldUpdateOperationsInput | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedUpdateManyWithoutFinancial_statementsNestedInput
+}
+
+export type FinancialStatementUncheckedUpdateManyWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFinancialStatementTypeFieldUpdateOperationsInput | $Enums.FinancialStatementType
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type FinancialStatementCreateManyCompanyInput = {
@@ -479,6 +1108,15 @@ export type FinancialStatementCreateManyCompanyInput = {
   periodEnd: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  fiscalYear?: number
+  fiscalQuarter?: number | null
+  periodType?: $Enums.FinancialPeriodType
+  currency?: string
+  scale?: $Enums.FinancialScale
+  sourceType?: $Enums.FinancialDataSourceType | null
+  sourceReference?: string | null
+  importedAt?: Date | string | null
+  importedBy?: string | null
 }
 
 export type FinancialStatementUpdateWithoutCompanyInput = {
@@ -488,6 +1126,16 @@ export type FinancialStatementUpdateWithoutCompanyInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  financial_line_items?: Prisma.financial_line_itemsUpdateManyWithoutFinancial_statementsNestedInput
+  users?: Prisma.UserUpdateOneWithoutFinancial_statementsNestedInput
 }
 
 export type FinancialStatementUncheckedUpdateWithoutCompanyInput = {
@@ -497,6 +1145,16 @@ export type FinancialStatementUncheckedUpdateWithoutCompanyInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financial_line_items?: Prisma.financial_line_itemsUncheckedUpdateManyWithoutFinancial_statementsNestedInput
 }
 
 export type FinancialStatementUncheckedUpdateManyWithoutCompanyInput = {
@@ -506,8 +1164,46 @@ export type FinancialStatementUncheckedUpdateManyWithoutCompanyInput = {
   periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fiscalYear?: Prisma.IntFieldUpdateOperationsInput | number
+  fiscalQuarter?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  periodType?: Prisma.EnumFinancialPeriodTypeFieldUpdateOperationsInput | $Enums.FinancialPeriodType
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  scale?: Prisma.EnumFinancialScaleFieldUpdateOperationsInput | $Enums.FinancialScale
+  sourceType?: Prisma.NullableEnumFinancialDataSourceTypeFieldUpdateOperationsInput | $Enums.FinancialDataSourceType | null
+  sourceReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  importedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+
+/**
+ * Count Type FinancialStatementCountOutputType
+ */
+
+export type FinancialStatementCountOutputType = {
+  financial_line_items: number
+}
+
+export type FinancialStatementCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  financial_line_items?: boolean | FinancialStatementCountOutputTypeCountFinancial_line_itemsArgs
+}
+
+/**
+ * FinancialStatementCountOutputType without action
+ */
+export type FinancialStatementCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FinancialStatementCountOutputType
+   */
+  select?: Prisma.FinancialStatementCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * FinancialStatementCountOutputType without action
+ */
+export type FinancialStatementCountOutputTypeCountFinancial_line_itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.financial_line_itemsWhereInput
+}
 
 
 export type FinancialStatementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -518,7 +1214,19 @@ export type FinancialStatementSelect<ExtArgs extends runtime.Types.Extensions.In
   periodEnd?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fiscalYear?: boolean
+  fiscalQuarter?: boolean
+  periodType?: boolean
+  currency?: boolean
+  scale?: boolean
+  sourceType?: boolean
+  sourceReference?: boolean
+  importedAt?: boolean
+  importedBy?: boolean
+  financial_line_items?: boolean | Prisma.FinancialStatement$financial_line_itemsArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
+  _count?: boolean | Prisma.FinancialStatementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["financialStatement"]>
 
 export type FinancialStatementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -529,7 +1237,17 @@ export type FinancialStatementSelectCreateManyAndReturn<ExtArgs extends runtime.
   periodEnd?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fiscalYear?: boolean
+  fiscalQuarter?: boolean
+  periodType?: boolean
+  currency?: boolean
+  scale?: boolean
+  sourceType?: boolean
+  sourceReference?: boolean
+  importedAt?: boolean
+  importedBy?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
 }, ExtArgs["result"]["financialStatement"]>
 
 export type FinancialStatementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -540,7 +1258,17 @@ export type FinancialStatementSelectUpdateManyAndReturn<ExtArgs extends runtime.
   periodEnd?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fiscalYear?: boolean
+  fiscalQuarter?: boolean
+  periodType?: boolean
+  currency?: boolean
+  scale?: boolean
+  sourceType?: boolean
+  sourceReference?: boolean
+  importedAt?: boolean
+  importedBy?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
 }, ExtArgs["result"]["financialStatement"]>
 
 export type FinancialStatementSelectScalar = {
@@ -551,23 +1279,39 @@ export type FinancialStatementSelectScalar = {
   periodEnd?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fiscalYear?: boolean
+  fiscalQuarter?: boolean
+  periodType?: boolean
+  currency?: boolean
+  scale?: boolean
+  sourceType?: boolean
+  sourceReference?: boolean
+  importedAt?: boolean
+  importedBy?: boolean
 }
 
-export type FinancialStatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "type" | "periodStart" | "periodEnd" | "createdAt" | "updatedAt", ExtArgs["result"]["financialStatement"]>
+export type FinancialStatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "type" | "periodStart" | "periodEnd" | "createdAt" | "updatedAt" | "fiscalYear" | "fiscalQuarter" | "periodType" | "currency" | "scale" | "sourceType" | "sourceReference" | "importedAt" | "importedBy", ExtArgs["result"]["financialStatement"]>
 export type FinancialStatementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  financial_line_items?: boolean | Prisma.FinancialStatement$financial_line_itemsArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
+  _count?: boolean | Prisma.FinancialStatementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FinancialStatementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
 }
 export type FinancialStatementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  users?: boolean | Prisma.FinancialStatement$usersArgs<ExtArgs>
 }
 
 export type $FinancialStatementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "FinancialStatement"
   objects: {
+    financial_line_items: Prisma.$financial_line_itemsPayload<ExtArgs>[]
     company: Prisma.$CompanyPayload<ExtArgs>
+    users: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -577,6 +1321,15 @@ export type $FinancialStatementPayload<ExtArgs extends runtime.Types.Extensions.
     periodEnd: Date
     createdAt: Date
     updatedAt: Date
+    fiscalYear: number
+    fiscalQuarter: number | null
+    periodType: $Enums.FinancialPeriodType
+    currency: string
+    scale: $Enums.FinancialScale
+    sourceType: $Enums.FinancialDataSourceType | null
+    sourceReference: string | null
+    importedAt: Date | null
+    importedBy: string | null
   }, ExtArgs["result"]["financialStatement"]>
   composites: {}
 }
@@ -971,7 +1724,9 @@ readonly fields: FinancialStatementFieldRefs;
  */
 export interface Prisma__FinancialStatementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  financial_line_items<T extends Prisma.FinancialStatement$financial_line_itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinancialStatement$financial_line_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$financial_line_itemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  users<T extends Prisma.FinancialStatement$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinancialStatement$usersArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1008,6 +1763,15 @@ export interface FinancialStatementFieldRefs {
   readonly periodEnd: Prisma.FieldRef<"FinancialStatement", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"FinancialStatement", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"FinancialStatement", 'DateTime'>
+  readonly fiscalYear: Prisma.FieldRef<"FinancialStatement", 'Int'>
+  readonly fiscalQuarter: Prisma.FieldRef<"FinancialStatement", 'Int'>
+  readonly periodType: Prisma.FieldRef<"FinancialStatement", 'FinancialPeriodType'>
+  readonly currency: Prisma.FieldRef<"FinancialStatement", 'String'>
+  readonly scale: Prisma.FieldRef<"FinancialStatement", 'FinancialScale'>
+  readonly sourceType: Prisma.FieldRef<"FinancialStatement", 'FinancialDataSourceType'>
+  readonly sourceReference: Prisma.FieldRef<"FinancialStatement", 'String'>
+  readonly importedAt: Prisma.FieldRef<"FinancialStatement", 'DateTime'>
+  readonly importedBy: Prisma.FieldRef<"FinancialStatement", 'String'>
 }
     
 
@@ -1406,6 +2170,49 @@ export type FinancialStatementDeleteManyArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many FinancialStatements to delete.
    */
   limit?: number
+}
+
+/**
+ * FinancialStatement.financial_line_items
+ */
+export type FinancialStatement$financial_line_itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the financial_line_items
+   */
+  select?: Prisma.financial_line_itemsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the financial_line_items
+   */
+  omit?: Prisma.financial_line_itemsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.financial_line_itemsInclude<ExtArgs> | null
+  where?: Prisma.financial_line_itemsWhereInput
+  orderBy?: Prisma.financial_line_itemsOrderByWithRelationInput | Prisma.financial_line_itemsOrderByWithRelationInput[]
+  cursor?: Prisma.financial_line_itemsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Financial_line_itemsScalarFieldEnum | Prisma.Financial_line_itemsScalarFieldEnum[]
+}
+
+/**
+ * FinancialStatement.users
+ */
+export type FinancialStatement$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

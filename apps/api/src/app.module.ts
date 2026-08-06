@@ -2,20 +2,27 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+
 import { AuthModule } from './auth/auth.module';
 import { CompaniesModule } from './companies/companies.module';
 import { FinancialsModule } from './financials/financials.module';
+import { IngestionModule } from './ingestion/ingestion.module';
 import { HealthModule } from './health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
     PrismaModule,
     AuthModule,
     CompaniesModule,
     FinancialsModule,
+    IngestionModule,
     HealthModule,
+
     ThrottlerModule.forRoot([
       {
         name: 'short',
@@ -29,6 +36,7 @@ import { PrismaModule } from './prisma/prisma.module';
       },
     ]),
   ],
+
   providers: [
     {
       provide: APP_GUARD,
@@ -36,4 +44,4 @@ import { PrismaModule } from './prisma/prisma.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

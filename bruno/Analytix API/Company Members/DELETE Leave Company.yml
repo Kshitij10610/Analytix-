@@ -1,0 +1,17 @@
+info:
+  name: DELETE Leave Company
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/members/self/leave"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NTMxMywiZXhwIjoxNzg1NjY2MjEzfQ.xLIVviQBtTwpIqP0Q8FqzvJZ-sRaTUqKI3quSuofasg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

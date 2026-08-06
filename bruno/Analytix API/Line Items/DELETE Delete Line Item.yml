@@ -1,0 +1,17 @@
+info:
+  name: DELETE Delete Line Item
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/financial-line-items/cmsboalwy000jt8g1gjv0vn2c"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NzM0MCwiZXhwIjoxNzg1NjY4MjQwfQ.FJ_WnDynB0qJ3LGLlj7C9tv3ELgWkjFTHvfRj1nIFUg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

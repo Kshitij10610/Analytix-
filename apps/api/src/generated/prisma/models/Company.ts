@@ -31,6 +31,7 @@ export type CompanyMinAggregateOutputType = {
   website: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  ownerId: string | null
 }
 
 export type CompanyMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type CompanyMaxAggregateOutputType = {
   website: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  ownerId: string | null
 }
 
 export type CompanyCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type CompanyCountAggregateOutputType = {
   website: number
   createdAt: number
   updatedAt: number
+  ownerId: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type CompanyMinAggregateInputType = {
   website?: true
   createdAt?: true
   updatedAt?: true
+  ownerId?: true
 }
 
 export type CompanyMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type CompanyMaxAggregateInputType = {
   website?: true
   createdAt?: true
   updatedAt?: true
+  ownerId?: true
 }
 
 export type CompanyCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type CompanyCountAggregateInputType = {
   website?: true
   createdAt?: true
   updatedAt?: true
+  ownerId?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type CompanyGroupByOutputType = {
   website: string | null
   createdAt: Date
   updatedAt: Date
+  ownerId: string | null
   _count: CompanyCountAggregateOutputType | null
   _min: CompanyMinAggregateOutputType | null
   _max: CompanyMaxAggregateOutputType | null
@@ -190,8 +197,12 @@ export type CompanyWhereInput = {
   website?: Prisma.StringNullableFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  users?: Prisma.UserListRelationFilter
+  ownerId?: Prisma.StringNullableFilter<"Company"> | string | null
+  users?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  company_members?: Prisma.XOR<Prisma.Company_membersNullableScalarRelationFilter, Prisma.company_membersWhereInput> | null
   financialStatements?: Prisma.FinancialStatementListRelationFilter
+  import_jobs?: Prisma.Import_jobsListRelationFilter
+  source_files?: Prisma.Source_filesListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -201,8 +212,12 @@ export type CompanyOrderByWithRelationInput = {
   website?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  users?: Prisma.UserOrderByRelationAggregateInput
+  ownerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  users?: Prisma.UserOrderByWithRelationInput
+  company_members?: Prisma.company_membersOrderByWithRelationInput
   financialStatements?: Prisma.FinancialStatementOrderByRelationAggregateInput
+  import_jobs?: Prisma.import_jobsOrderByRelationAggregateInput
+  source_files?: Prisma.source_filesOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -215,8 +230,12 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   website?: Prisma.StringNullableFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  users?: Prisma.UserListRelationFilter
+  ownerId?: Prisma.StringNullableFilter<"Company"> | string | null
+  users?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  company_members?: Prisma.XOR<Prisma.Company_membersNullableScalarRelationFilter, Prisma.company_membersWhereInput> | null
   financialStatements?: Prisma.FinancialStatementListRelationFilter
+  import_jobs?: Prisma.Import_jobsListRelationFilter
+  source_files?: Prisma.Source_filesListRelationFilter
 }, "id">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -226,6 +245,7 @@ export type CompanyOrderByWithAggregationInput = {
   website?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CompanyCountOrderByAggregateInput
   _max?: Prisma.CompanyMaxOrderByAggregateInput
   _min?: Prisma.CompanyMinOrderByAggregateInput
@@ -241,6 +261,7 @@ export type CompanyScalarWhereWithAggregatesInput = {
   website?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
+  ownerId?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
 }
 
 export type CompanyCreateInput = {
@@ -250,8 +271,11 @@ export type CompanyCreateInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutCompaniesInput
+  users?: Prisma.UserCreateNestedOneWithoutCompaniesInput
+  company_members?: Prisma.company_membersCreateNestedOneWithoutCompaniesInput
   financialStatements?: Prisma.FinancialStatementCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -261,8 +285,11 @@ export type CompanyUncheckedCreateInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCompaniesInput
+  ownerId?: string | null
+  company_members?: Prisma.company_membersUncheckedCreateNestedOneWithoutCompaniesInput
   financialStatements?: Prisma.FinancialStatementUncheckedCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsUncheckedCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesUncheckedCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyUpdateInput = {
@@ -272,8 +299,11 @@ export type CompanyUpdateInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutCompaniesNestedInput
+  users?: Prisma.UserUpdateOneWithoutCompaniesNestedInput
+  company_members?: Prisma.company_membersUpdateOneWithoutCompaniesNestedInput
   financialStatements?: Prisma.FinancialStatementUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUpdateManyWithoutCompaniesNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -283,8 +313,11 @@ export type CompanyUncheckedUpdateInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutCompaniesNestedInput
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  company_members?: Prisma.company_membersUncheckedUpdateOneWithoutCompaniesNestedInput
   financialStatements?: Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUncheckedUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUncheckedUpdateManyWithoutCompaniesNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -294,6 +327,7 @@ export type CompanyCreateManyInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  ownerId?: string | null
 }
 
 export type CompanyUpdateManyMutationInput = {
@@ -312,6 +346,7 @@ export type CompanyUncheckedUpdateManyInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CompanyListRelationFilter = {
@@ -331,6 +366,7 @@ export type CompanyCountOrderByAggregateInput = {
   website?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
 }
 
 export type CompanyMaxOrderByAggregateInput = {
@@ -340,6 +376,7 @@ export type CompanyMaxOrderByAggregateInput = {
   website?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
 }
 
 export type CompanyMinOrderByAggregateInput = {
@@ -349,6 +386,7 @@ export type CompanyMinOrderByAggregateInput = {
   website?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
 }
 
 export type CompanyScalarRelationFilter = {
@@ -359,12 +397,14 @@ export type CompanyScalarRelationFilter = {
 export type CompanyCreateNestedManyWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutUsersInput, Prisma.CompanyUncheckedCreateWithoutUsersInput> | Prisma.CompanyCreateWithoutUsersInput[] | Prisma.CompanyUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutUsersInput | Prisma.CompanyCreateOrConnectWithoutUsersInput[]
+  createMany?: Prisma.CompanyCreateManyUsersInputEnvelope
   connect?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
 }
 
 export type CompanyUncheckedCreateNestedManyWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutUsersInput, Prisma.CompanyUncheckedCreateWithoutUsersInput> | Prisma.CompanyCreateWithoutUsersInput[] | Prisma.CompanyUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutUsersInput | Prisma.CompanyCreateOrConnectWithoutUsersInput[]
+  createMany?: Prisma.CompanyCreateManyUsersInputEnvelope
   connect?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
 }
 
@@ -372,6 +412,7 @@ export type CompanyUpdateManyWithoutUsersNestedInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutUsersInput, Prisma.CompanyUncheckedCreateWithoutUsersInput> | Prisma.CompanyCreateWithoutUsersInput[] | Prisma.CompanyUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutUsersInput | Prisma.CompanyCreateOrConnectWithoutUsersInput[]
   upsert?: Prisma.CompanyUpsertWithWhereUniqueWithoutUsersInput | Prisma.CompanyUpsertWithWhereUniqueWithoutUsersInput[]
+  createMany?: Prisma.CompanyCreateManyUsersInputEnvelope
   set?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
   disconnect?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
   delete?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
@@ -385,6 +426,7 @@ export type CompanyUncheckedUpdateManyWithoutUsersNestedInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutUsersInput, Prisma.CompanyUncheckedCreateWithoutUsersInput> | Prisma.CompanyCreateWithoutUsersInput[] | Prisma.CompanyUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutUsersInput | Prisma.CompanyCreateOrConnectWithoutUsersInput[]
   upsert?: Prisma.CompanyUpsertWithWhereUniqueWithoutUsersInput | Prisma.CompanyUpsertWithWhereUniqueWithoutUsersInput[]
+  createMany?: Prisma.CompanyCreateManyUsersInputEnvelope
   set?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
   disconnect?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
   delete?: Prisma.CompanyWhereUniqueInput | Prisma.CompanyWhereUniqueInput[]
@@ -408,6 +450,48 @@ export type CompanyUpdateOneRequiredWithoutFinancialStatementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutFinancialStatementsInput, Prisma.CompanyUpdateWithoutFinancialStatementsInput>, Prisma.CompanyUncheckedUpdateWithoutFinancialStatementsInput>
 }
 
+export type CompanyCreateNestedOneWithoutCompany_membersInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutCompany_membersInput, Prisma.CompanyUncheckedCreateWithoutCompany_membersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCompany_membersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutCompany_membersNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutCompany_membersInput, Prisma.CompanyUncheckedCreateWithoutCompany_membersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCompany_membersInput
+  upsert?: Prisma.CompanyUpsertWithoutCompany_membersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutCompany_membersInput, Prisma.CompanyUpdateWithoutCompany_membersInput>, Prisma.CompanyUncheckedUpdateWithoutCompany_membersInput>
+}
+
+export type CompanyCreateNestedOneWithoutImport_jobsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutImport_jobsInput, Prisma.CompanyUncheckedCreateWithoutImport_jobsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutImport_jobsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutImport_jobsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutImport_jobsInput, Prisma.CompanyUncheckedCreateWithoutImport_jobsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutImport_jobsInput
+  upsert?: Prisma.CompanyUpsertWithoutImport_jobsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutImport_jobsInput, Prisma.CompanyUpdateWithoutImport_jobsInput>, Prisma.CompanyUncheckedUpdateWithoutImport_jobsInput>
+}
+
+export type CompanyCreateNestedOneWithoutSource_filesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSource_filesInput, Prisma.CompanyUncheckedCreateWithoutSource_filesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSource_filesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutSource_filesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSource_filesInput, Prisma.CompanyUncheckedCreateWithoutSource_filesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSource_filesInput
+  upsert?: Prisma.CompanyUpsertWithoutSource_filesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSource_filesInput, Prisma.CompanyUpdateWithoutSource_filesInput>, Prisma.CompanyUncheckedUpdateWithoutSource_filesInput>
+}
+
 export type CompanyCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -415,7 +499,10 @@ export type CompanyCreateWithoutUsersInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company_members?: Prisma.company_membersCreateNestedOneWithoutCompaniesInput
   financialStatements?: Prisma.FinancialStatementCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyUncheckedCreateWithoutUsersInput = {
@@ -425,12 +512,20 @@ export type CompanyUncheckedCreateWithoutUsersInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company_members?: Prisma.company_membersUncheckedCreateNestedOneWithoutCompaniesInput
   financialStatements?: Prisma.FinancialStatementUncheckedCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsUncheckedCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesUncheckedCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyCreateOrConnectWithoutUsersInput = {
   where: Prisma.CompanyWhereUniqueInput
   create: Prisma.XOR<Prisma.CompanyCreateWithoutUsersInput, Prisma.CompanyUncheckedCreateWithoutUsersInput>
+}
+
+export type CompanyCreateManyUsersInputEnvelope = {
+  data: Prisma.CompanyCreateManyUsersInput | Prisma.CompanyCreateManyUsersInput[]
+  skipDuplicates?: boolean
 }
 
 export type CompanyUpsertWithWhereUniqueWithoutUsersInput = {
@@ -459,6 +554,7 @@ export type CompanyScalarWhereInput = {
   website?: Prisma.StringNullableFilter<"Company"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
+  ownerId?: Prisma.StringNullableFilter<"Company"> | string | null
 }
 
 export type CompanyCreateWithoutFinancialStatementsInput = {
@@ -468,7 +564,10 @@ export type CompanyCreateWithoutFinancialStatementsInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutCompaniesInput
+  users?: Prisma.UserCreateNestedOneWithoutCompaniesInput
+  company_members?: Prisma.company_membersCreateNestedOneWithoutCompaniesInput
+  import_jobs?: Prisma.import_jobsCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyUncheckedCreateWithoutFinancialStatementsInput = {
@@ -478,7 +577,10 @@ export type CompanyUncheckedCreateWithoutFinancialStatementsInput = {
   website?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCompaniesInput
+  ownerId?: string | null
+  company_members?: Prisma.company_membersUncheckedCreateNestedOneWithoutCompaniesInput
+  import_jobs?: Prisma.import_jobsUncheckedCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesUncheckedCreateNestedManyWithoutCompaniesInput
 }
 
 export type CompanyCreateOrConnectWithoutFinancialStatementsInput = {
@@ -504,7 +606,10 @@ export type CompanyUpdateWithoutFinancialStatementsInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutCompaniesNestedInput
+  users?: Prisma.UserUpdateOneWithoutCompaniesNestedInput
+  company_members?: Prisma.company_membersUpdateOneWithoutCompaniesNestedInput
+  import_jobs?: Prisma.import_jobsUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUpdateManyWithoutCompaniesNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutFinancialStatementsInput = {
@@ -514,7 +619,223 @@ export type CompanyUncheckedUpdateWithoutFinancialStatementsInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutCompaniesNestedInput
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  company_members?: Prisma.company_membersUncheckedUpdateOneWithoutCompaniesNestedInput
+  import_jobs?: Prisma.import_jobsUncheckedUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUncheckedUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyCreateWithoutCompany_membersInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedOneWithoutCompaniesInput
+  financialStatements?: Prisma.FinancialStatementCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyUncheckedCreateWithoutCompany_membersInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId?: string | null
+  financialStatements?: Prisma.FinancialStatementUncheckedCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsUncheckedCreateNestedManyWithoutCompaniesInput
+  source_files?: Prisma.source_filesUncheckedCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyCreateOrConnectWithoutCompany_membersInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutCompany_membersInput, Prisma.CompanyUncheckedCreateWithoutCompany_membersInput>
+}
+
+export type CompanyUpsertWithoutCompany_membersInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutCompany_membersInput, Prisma.CompanyUncheckedUpdateWithoutCompany_membersInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutCompany_membersInput, Prisma.CompanyUncheckedCreateWithoutCompany_membersInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutCompany_membersInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutCompany_membersInput, Prisma.CompanyUncheckedUpdateWithoutCompany_membersInput>
+}
+
+export type CompanyUpdateWithoutCompany_membersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateOneWithoutCompaniesNestedInput
+  financialStatements?: Prisma.FinancialStatementUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutCompany_membersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financialStatements?: Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUncheckedUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUncheckedUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyCreateWithoutImport_jobsInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedOneWithoutCompaniesInput
+  company_members?: Prisma.company_membersCreateNestedOneWithoutCompaniesInput
+  financialStatements?: Prisma.FinancialStatementCreateNestedManyWithoutCompanyInput
+  source_files?: Prisma.source_filesCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyUncheckedCreateWithoutImport_jobsInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId?: string | null
+  company_members?: Prisma.company_membersUncheckedCreateNestedOneWithoutCompaniesInput
+  financialStatements?: Prisma.FinancialStatementUncheckedCreateNestedManyWithoutCompanyInput
+  source_files?: Prisma.source_filesUncheckedCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyCreateOrConnectWithoutImport_jobsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutImport_jobsInput, Prisma.CompanyUncheckedCreateWithoutImport_jobsInput>
+}
+
+export type CompanyUpsertWithoutImport_jobsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutImport_jobsInput, Prisma.CompanyUncheckedUpdateWithoutImport_jobsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutImport_jobsInput, Prisma.CompanyUncheckedCreateWithoutImport_jobsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutImport_jobsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutImport_jobsInput, Prisma.CompanyUncheckedUpdateWithoutImport_jobsInput>
+}
+
+export type CompanyUpdateWithoutImport_jobsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateOneWithoutCompaniesNestedInput
+  company_members?: Prisma.company_membersUpdateOneWithoutCompaniesNestedInput
+  financialStatements?: Prisma.FinancialStatementUpdateManyWithoutCompanyNestedInput
+  source_files?: Prisma.source_filesUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutImport_jobsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  company_members?: Prisma.company_membersUncheckedUpdateOneWithoutCompaniesNestedInput
+  financialStatements?: Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyNestedInput
+  source_files?: Prisma.source_filesUncheckedUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyCreateWithoutSource_filesInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedOneWithoutCompaniesInput
+  company_members?: Prisma.company_membersCreateNestedOneWithoutCompaniesInput
+  financialStatements?: Prisma.FinancialStatementCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyUncheckedCreateWithoutSource_filesInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId?: string | null
+  company_members?: Prisma.company_membersUncheckedCreateNestedOneWithoutCompaniesInput
+  financialStatements?: Prisma.FinancialStatementUncheckedCreateNestedManyWithoutCompanyInput
+  import_jobs?: Prisma.import_jobsUncheckedCreateNestedManyWithoutCompaniesInput
+}
+
+export type CompanyCreateOrConnectWithoutSource_filesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSource_filesInput, Prisma.CompanyUncheckedCreateWithoutSource_filesInput>
+}
+
+export type CompanyUpsertWithoutSource_filesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSource_filesInput, Prisma.CompanyUncheckedUpdateWithoutSource_filesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSource_filesInput, Prisma.CompanyUncheckedCreateWithoutSource_filesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutSource_filesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSource_filesInput, Prisma.CompanyUncheckedUpdateWithoutSource_filesInput>
+}
+
+export type CompanyUpdateWithoutSource_filesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateOneWithoutCompaniesNestedInput
+  company_members?: Prisma.company_membersUpdateOneWithoutCompaniesNestedInput
+  financialStatements?: Prisma.FinancialStatementUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutSource_filesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  company_members?: Prisma.company_membersUncheckedUpdateOneWithoutCompaniesNestedInput
+  financialStatements?: Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUncheckedUpdateManyWithoutCompaniesNestedInput
+}
+
+export type CompanyCreateManyUsersInput = {
+  id?: string
+  name: string
+  industry?: string | null
+  website?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CompanyUpdateWithoutUsersInput = {
@@ -524,7 +845,10 @@ export type CompanyUpdateWithoutUsersInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_members?: Prisma.company_membersUpdateOneWithoutCompaniesNestedInput
   financialStatements?: Prisma.FinancialStatementUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUpdateManyWithoutCompaniesNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutUsersInput = {
@@ -534,7 +858,10 @@ export type CompanyUncheckedUpdateWithoutUsersInput = {
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_members?: Prisma.company_membersUncheckedUpdateOneWithoutCompaniesNestedInput
   financialStatements?: Prisma.FinancialStatementUncheckedUpdateManyWithoutCompanyNestedInput
+  import_jobs?: Prisma.import_jobsUncheckedUpdateManyWithoutCompaniesNestedInput
+  source_files?: Prisma.source_filesUncheckedUpdateManyWithoutCompaniesNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutUsersInput = {
@@ -552,13 +879,15 @@ export type CompanyUncheckedUpdateManyWithoutUsersInput = {
  */
 
 export type CompanyCountOutputType = {
-  users: number
   financialStatements: number
+  import_jobs: number
+  source_files: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | CompanyCountOutputTypeCountUsersArgs
   financialStatements?: boolean | CompanyCountOutputTypeCountFinancialStatementsArgs
+  import_jobs?: boolean | CompanyCountOutputTypeCountImport_jobsArgs
+  source_files?: boolean | CompanyCountOutputTypeCountSource_filesArgs
 }
 
 /**
@@ -574,15 +903,22 @@ export type CompanyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
+export type CompanyCountOutputTypeCountFinancialStatementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FinancialStatementWhereInput
 }
 
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountFinancialStatementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.FinancialStatementWhereInput
+export type CompanyCountOutputTypeCountImport_jobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.import_jobsWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountSource_filesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.source_filesWhereInput
 }
 
 
@@ -593,8 +929,12 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   website?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  ownerId?: boolean
   users?: boolean | Prisma.Company$usersArgs<ExtArgs>
+  company_members?: boolean | Prisma.Company$company_membersArgs<ExtArgs>
   financialStatements?: boolean | Prisma.Company$financialStatementsArgs<ExtArgs>
+  import_jobs?: boolean | Prisma.Company$import_jobsArgs<ExtArgs>
+  source_files?: boolean | Prisma.Company$source_filesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -605,6 +945,8 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   website?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  ownerId?: boolean
+  users?: boolean | Prisma.Company$usersArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
 export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -614,6 +956,8 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   website?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  ownerId?: boolean
+  users?: boolean | Prisma.Company$usersArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
 export type CompanySelectScalar = {
@@ -623,22 +967,33 @@ export type CompanySelectScalar = {
   website?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  ownerId?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "industry" | "website" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "industry" | "website" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Company$usersArgs<ExtArgs>
+  company_members?: boolean | Prisma.Company$company_membersArgs<ExtArgs>
   financialStatements?: boolean | Prisma.Company$financialStatementsArgs<ExtArgs>
+  import_jobs?: boolean | Prisma.Company$import_jobsArgs<ExtArgs>
+  source_files?: boolean | Prisma.Company$source_filesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type CompanyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  users?: boolean | Prisma.Company$usersArgs<ExtArgs>
+}
+export type CompanyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  users?: boolean | Prisma.Company$usersArgs<ExtArgs>
+}
 
 export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Company"
   objects: {
-    users: Prisma.$UserPayload<ExtArgs>[]
+    users: Prisma.$UserPayload<ExtArgs> | null
+    company_members: Prisma.$company_membersPayload<ExtArgs> | null
     financialStatements: Prisma.$FinancialStatementPayload<ExtArgs>[]
+    import_jobs: Prisma.$import_jobsPayload<ExtArgs>[]
+    source_files: Prisma.$source_filesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -647,6 +1002,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     website: string | null
     createdAt: Date
     updatedAt: Date
+    ownerId: string | null
   }, ExtArgs["result"]["company"]>
   composites: {}
 }
@@ -1041,8 +1397,11 @@ readonly fields: CompanyFieldRefs;
  */
 export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  users<T extends Prisma.Company$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.Company$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$usersArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  company_members<T extends Prisma.Company$company_membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$company_membersArgs<ExtArgs>>): Prisma.Prisma__company_membersClient<runtime.Types.Result.GetResult<Prisma.$company_membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   financialStatements<T extends Prisma.Company$financialStatementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$financialStatementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinancialStatementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  import_jobs<T extends Prisma.Company$import_jobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$import_jobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$import_jobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  source_files<T extends Prisma.Company$source_filesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$source_filesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$source_filesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1078,6 +1437,7 @@ export interface CompanyFieldRefs {
   readonly website: Prisma.FieldRef<"Company", 'String'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
+  readonly ownerId: Prisma.FieldRef<"Company", 'String'>
 }
     
 
@@ -1332,6 +1692,10 @@ export type CompanyCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.CompanyCreateManyInput | Prisma.CompanyCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1402,6 +1766,10 @@ export type CompanyUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Companies to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1487,11 +1855,25 @@ export type Company$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+}
+
+/**
+ * Company.company_members
+ */
+export type Company$company_membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the company_members
+   */
+  select?: Prisma.company_membersSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the company_members
+   */
+  omit?: Prisma.company_membersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.company_membersInclude<ExtArgs> | null
+  where?: Prisma.company_membersWhereInput
 }
 
 /**
@@ -1516,6 +1898,54 @@ export type Company$financialStatementsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.FinancialStatementScalarFieldEnum | Prisma.FinancialStatementScalarFieldEnum[]
+}
+
+/**
+ * Company.import_jobs
+ */
+export type Company$import_jobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the import_jobs
+   */
+  select?: Prisma.import_jobsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the import_jobs
+   */
+  omit?: Prisma.import_jobsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.import_jobsInclude<ExtArgs> | null
+  where?: Prisma.import_jobsWhereInput
+  orderBy?: Prisma.import_jobsOrderByWithRelationInput | Prisma.import_jobsOrderByWithRelationInput[]
+  cursor?: Prisma.import_jobsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Import_jobsScalarFieldEnum | Prisma.Import_jobsScalarFieldEnum[]
+}
+
+/**
+ * Company.source_files
+ */
+export type Company$source_filesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the source_files
+   */
+  select?: Prisma.source_filesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the source_files
+   */
+  omit?: Prisma.source_filesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.source_filesInclude<ExtArgs> | null
+  where?: Prisma.source_filesWhereInput
+  orderBy?: Prisma.source_filesOrderByWithRelationInput | Prisma.source_filesOrderByWithRelationInput[]
+  cursor?: Prisma.source_filesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Source_filesScalarFieldEnum | Prisma.Source_filesScalarFieldEnum[]
 }
 
 /**

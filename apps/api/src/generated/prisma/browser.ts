@@ -37,3 +37,43 @@ export type FinancialStatement = Prisma.FinancialStatementModel
  * 
  */
 export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model audit_events
+ * 
+ */
+export type audit_events = Prisma.audit_eventsModel
+/**
+ * Model company_members
+ * 
+ */
+export type company_members = Prisma.company_membersModel
+/**
+ * Model financial_line_items
+ * 
+ */
+export type financial_line_items = Prisma.financial_line_itemsModel
+/**
+ * Model import_jobs
+ * 
+ */
+export type import_jobs = Prisma.import_jobsModel
+/**
+ * Model import_raw_rows
+ * 
+ */
+export type import_raw_rows = Prisma.import_raw_rowsModel
+/**
+ * Model metric_definitions
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type metric_definitions = Prisma.metric_definitionsModel
+/**
+ * Model import_normalized_rows
+ * 
+ */
+export type import_normalized_rows = Prisma.import_normalized_rowsModel
+/**
+ * Model source_files
+ * 
+ */
+export type source_files = Prisma.source_filesModel

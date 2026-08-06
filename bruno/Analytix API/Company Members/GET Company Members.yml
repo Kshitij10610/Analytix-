@@ -1,0 +1,28 @@
+info:
+  name: GET Company Members
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/members"
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "role": "OWNER"
+        },
+        {
+          "role": "EDITOR"
+        }
+      ]
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NDAwOCwiZXhwIjoxNzg1NjY0OTA4fQ.UHaOTU76fYS14tPsxssPjmSLLic2OMxoWaXmv8hinhI
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

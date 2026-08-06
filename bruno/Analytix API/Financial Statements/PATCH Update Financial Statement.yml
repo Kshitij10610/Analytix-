@@ -1,0 +1,24 @@
+info:
+  name: PATCH Update Financial Statement
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/financial-statements/cmsbn94no0006t8g1jj28f397"
+  body:
+    type: json
+    data: |-
+      {
+        "currency": "INR",
+        "sourceReference": "Updated Annual Report"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NjI4MCwiZXhwIjoxNzg1NjY3MTgwfQ.x7fa1thtGK7TbMzOEtAbXWusy_gYzcnrxPCCcX9yWM4
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

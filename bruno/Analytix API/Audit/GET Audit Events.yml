@@ -1,0 +1,15 @@
+info:
+  name: GET Audit Events
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/audit-events"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
