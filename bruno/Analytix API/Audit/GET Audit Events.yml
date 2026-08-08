@@ -6,7 +6,9 @@ info:
 http:
   method: GET
   url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/audit-events"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjAyMzg0MCwiZXhwIjoxNzg2MDI0NzQwfQ.oLihme0unu0OssJbVg3coadU07AloMEE6ec4DR3qGMM
 
 settings:
   encodeUrl: true

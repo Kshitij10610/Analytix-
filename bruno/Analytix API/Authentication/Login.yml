@@ -15,6 +15,16 @@ http:
       }
   auth: inherit
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        const body = res.getBody();
+
+        bru.setEnvVar("accessToken", body.accessToken);
+
+        console.log("Saved access token");
+
 settings:
   encodeUrl: true
   timeout: 0

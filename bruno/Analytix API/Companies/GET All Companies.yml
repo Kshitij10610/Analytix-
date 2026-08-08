@@ -8,7 +8,7 @@ http:
   url: "{{baseUrl}}/companies"
   auth:
     type: bearer
-    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2MjE1MiwiZXhwIjoxNzg1NjYzMDUyfQ.5GqzrVx2UKJp4MzRXGrXcNx3ajUQ91rtiIk5iJdCn8U
+    token: "{{accessToken}}"
 
 settings:
   encodeUrl: true

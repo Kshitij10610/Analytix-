@@ -10,13 +10,13 @@ http:
     type: json
     data: |-
       {
-        "name": "Analytix Test Company",
+        "name": "Test",
         "industry": "Finance",
-        "website": "https://analytix.ai"
+        "website": "https://test.com"
       }
   auth:
     type: bearer
-    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2MzI5MywiZXhwIjoxNzg1NjY0MTkzfQ.vn5hx9PQFWbd-T6RC7fZgEpr4G7zFxZYJiOK419MVAw
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjEwOTg4NSwiZXhwIjoxNzg2MTEwNzg1fQ.reF6GBQegAw3kuDMSdAx0VY4_Cd1r6eoGKkP6HMeAPA
 
 settings:
   encodeUrl: true

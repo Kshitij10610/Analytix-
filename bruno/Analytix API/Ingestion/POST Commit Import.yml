@@ -6,7 +6,9 @@ info:
 http:
   method: POST
   url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/imports/cmsbr0k1t0004usg11j2m3pqr/commit"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjAyMzAxOCwiZXhwIjoxNzg2MDIzOTE4fQ.Cm42vO1cElSSUC5IEtgz4VJmTrdiWIMPC3i7CJi0_8Q
 
 settings:
   encodeUrl: true

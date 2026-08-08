@@ -8,7 +8,7 @@ http:
   url: "{{baseUrl}}/financial-statements/cmsbn94no0006t8g1jj28f397"
   auth:
     type: bearer
-    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NTY2NjI4MCwiZXhwIjoxNzg1NjY3MTgwfQ.x7fa1thtGK7TbMzOEtAbXWusy_gYzcnrxPCCcX9yWM4
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjAyMzAxOCwiZXhwIjoxNzg2MDIzOTE4fQ.Cm42vO1cElSSUC5IEtgz4VJmTrdiWIMPC3i7CJi0_8Q
 
 settings:
   encodeUrl: true

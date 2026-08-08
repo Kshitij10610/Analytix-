@@ -6,7 +6,9 @@ info:
 http:
   method: GET
   url: "{{baseUrl}}/financial-statements/24d256d1-d0df-4617-8253-f0b31e6ef4ab"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjAyMzAxOCwiZXhwIjoxNzg2MDIzOTE4fQ.Cm42vO1cElSSUC5IEtgz4VJmTrdiWIMPC3i7CJi0_8Q
 
 settings:
   encodeUrl: true

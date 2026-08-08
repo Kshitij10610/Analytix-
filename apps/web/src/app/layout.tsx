@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { FontInjector } from "./font-injector";
-import { AppShellNav } from "@/components/app-shell/app-shell-nav";
+import { AuthProvider } from "@/providers/auth-provider";
+import { QueryProvider } from "@/providers/query-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { ToastContainer } from "@/components/ui/toast-provider";
+import { AppShellWrapper } from "./shell-wrapper";
 
 export const metadata: Metadata = {
   title: "Analytix",
@@ -17,12 +21,25 @@ export default function RootLayout({
     <html
       lang="en"
       className={`h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <FontInjector />
-        <AppShellNav>{children}</AppShellNav>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <QueryProvider>
+              <ToastContainer>
+                <AppShellWrapper>{children}</AppShellWrapper>
+              </ToastContainer>
+            </QueryProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-

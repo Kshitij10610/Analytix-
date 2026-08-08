@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 /* ============================================
    ANALYTIX DESIGN TOKENS
@@ -363,7 +364,7 @@
   --tracking-h3: var(--font-h3-letter-spacing);
   --tracking-h4: var(--font-h4-letter-spacing);
   --tracking-body-lg: var(--font-body-lg-letter-spacing);
-  --tracking-body: var(--font-body-weight);
+  --tracking-body: var(--font-body-letter-spacing);
   --tracking-body-sm: var(--font-body-sm-letter-spacing);
   --tracking-label: var(--font-label-letter-spacing);
   --tracking-caption: var(--font-caption-letter-spacing);
@@ -427,6 +428,28 @@
   --color-processing: var(--processing);
   --color-completed: var(--completed);
   --color-archived: var(--archived);
+
+  /* shadcn/ui Aliases */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--surface-card);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--surface-popover);
+  --color-popover-foreground: var(--text-primary);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--text-inverse);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--text-inverse);
+  --color-muted: var(--surface-hover);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--text-primary);
+  --color-destructive: var(--error);
+  --color-destructive-foreground: var(--text-inverse);
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--primary);
+  --radius: var(--radius-md);
 
   /* Neutral Scale */
   --color-neutral-50: var(--neutral-50);

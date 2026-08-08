@@ -6,7 +6,9 @@ info:
 http:
   method: GET
   url: "{{baseUrl}}/companies/cmsblu3fu000bzwg1regwumq8/financial-statements"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbXNhbzQwejAwMDAwendnMXE1cXFhNG9vIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4NjAyMzAxOCwiZXhwIjoxNzg2MDIzOTE4fQ.Cm42vO1cElSSUC5IEtgz4VJmTrdiWIMPC3i7CJi0_8Q
 
 settings:
   encodeUrl: true
